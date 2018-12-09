@@ -10,6 +10,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "common/navbar" %>
+
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
   </body>
 </html>

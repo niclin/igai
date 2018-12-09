@@ -1,14 +1,17 @@
 <%= link_to "Add new product", new_account_product_path %>
 
-
-<% @products.each do |product| %>
-  <% if product.pictures.attached? %>
-    <% product.pictures.each do |picture| %>
-      <%= image_tag(picture.variant(resize: '100x100')) %>
+<div class="row">
+    <% @products.each do |product| %>
+      <div class="col-sm-3">
+        <div class="card" style="width: 18rem;">
+          <h5 class="card-header"><%= product.title %></h5>
+          <% if product.pictures.attached? %>
+            <%= image_tag(product.pictures.first.variant(resize: '286x180'), class: "card-img-top") %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-text"><%= product.description %></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  <% end %>
-
-  <%= product.title %>
-
-
-<% end %>
+</div>

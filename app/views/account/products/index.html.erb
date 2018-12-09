@@ -8,6 +8,7 @@
           <th scope="col">標題</th>
           <th scope="col">敘述</th>
           <th scope="col">價格</th>
+          <th scope="col">人氣</th>
           <th scope="col">#</th>
         </tr>
       </thead>
@@ -16,7 +17,8 @@
         <tr>
           <td><%= product.title %></td>
           <td><%= product.description %></td>
-          <td><%= product.price %> </td>
+          <td><%= product.price %> 元</td>
+          <td><%= product.impressionist_count %></td>
           <td><%= link_to "編輯", edit_account_product_path(product) %></td>
         </tr>
         <% end %>
@@ -24,6 +26,3 @@
     </table>
   </div>
 </div>
-
-
-

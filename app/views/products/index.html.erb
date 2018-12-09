@@ -1,0 +1,19 @@
+<div class="row">
+
+
+<% @products.each do |product| %>
+  <div class="col-md-3">
+    <div class="card" style="width: 18rem;">
+      <h5 class="card-header"><%= product.title %></h5>
+      <% if product.pictures.attached? %>
+        <%= link_to product_path(product) do %>
+          <%= image_tag(product.pictures.first.variant(resize: '100x100'), class: "card-img-top") %>
+        <% end %>
+      <% end %>
+      <div class="card-body">
+        <p class="card-text"><%= product.description %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

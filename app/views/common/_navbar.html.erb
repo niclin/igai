@@ -5,6 +5,11 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to("所有商品", products_path, class: "nav-link") %>
+      </li>
+    </ul>
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
           <li class="nav-item">

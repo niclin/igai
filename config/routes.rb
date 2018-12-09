@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  resources :products, only: [:index, :show]
+
   root "home#index"
 end

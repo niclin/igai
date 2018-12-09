@@ -1,4 +1,6 @@
 Rails.application.configure do
+  config.action_cable.url = "wss://ws.example.com/cable"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

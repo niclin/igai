@@ -1,0 +1,14 @@
+<%= link_to "Add new product", new_account_product_path %>
+
+
+<% @products.each do |product| %>
+  <% if product.pictures.attached? %>
+    <% product.pictures.each do |picture| %>
+      <%= image_tag(picture) %>
+    <% end %>
+  <% end %>
+
+  <%= product.title %>
+
+
+<% end %>

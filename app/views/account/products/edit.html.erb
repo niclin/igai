@@ -2,6 +2,11 @@
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :price %>
+  <% if @product.pictures.attached? %>
+    <% @product.pictures.each do |picture| %>
+      <%= image_tag(picture.variant(resize: '100x100')) %>
+    <% end %>
+  <% end %>
   <%= f.input :pictures, as: :file, input_html: { multiple: true } %>
   <%= f.button :submit, class: "btn btn-success" %>
 <% end %>

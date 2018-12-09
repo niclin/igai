@@ -1,17 +1,29 @@
-<%= link_to "Add new product", new_account_product_path %>
+<%= link_to "Add new product", new_account_product_path, class: "btn btn-primary" %>
 
 <div class="row">
-    <% @products.each do |product| %>
-      <div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
-          <h5 class="card-header"><%= product.title %></h5>
-          <% if product.pictures.attached? %>
-            <%= image_tag(product.pictures.first.variant(resize: '286x180'), class: "card-img-top") %>
-          <% end %>
-          <div class="card-body">
-            <p class="card-text"><%= product.description %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">標題</th>
+          <th scope="col">敘述</th>
+          <th scope="col">價格</th>
+          <th scope="col">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+        <tr>
+          <td><%= product.title %></td>
+          <td><%= product.description %></td>
+          <td><%= product.price %> </td>
+          <td><%= link_to "編輯", edit_account_product_path(product) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+
+

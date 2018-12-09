@@ -35,6 +35,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'devise'
 gem 'simple_form'
+gem 'impressionist'
 
 gem "anycable-rails"
 

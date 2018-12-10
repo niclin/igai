@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   namespace :account do
-    resources :products
+    resources :products do
+      member do
+        delete 'pictures/:picture_id' => 'products#destroy_picture', as: :desctroy
+      end
+    end
   end
 
   resources :products, only: [:index, :show]

@@ -31,6 +31,17 @@ class Account::ProductsController < Account::BaseController
     end
   end
 
+  def destroy_picture
+    @product = Product.find(params[:id])
+
+    @product.pictures.find(params[:picture_id]).purge
+
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: account_products_path, notice: 'Product picture was successfully destroyed.') }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def product_params

@@ -5,6 +5,7 @@
   <% if @product.pictures.attached? %>
     <% @product.pictures.each do |picture| %>
       <%= image_tag(picture.variant(resize: '100x100')) %>
+      <%= link_to '刪除', desctroy_account_product_path(@product, picture), method: :delete %>
     <% end %>
   <% end %>
   <%= f.input :pictures, as: :file, input_html: { multiple: true } %>

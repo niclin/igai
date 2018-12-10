@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: igai_development
+
+test:
+  <<: *default
+  database: igai_test
+
+production:
+  <<: *default
+  database: igai_production
+  username: igai
+  password: <%= ENV['IGAI_DATABASE_PASSWORD'] %>

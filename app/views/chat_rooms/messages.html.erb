@@ -1,0 +1,18 @@
+<ul>
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <li>
+        <h4><%= message.user.email %></h4>
+        <p><%= message.context %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= simple_form_for [@chat_room.messages.new] do |f| %>
+  <div class="field">
+    <%= f.text_area :context, placeholder: "Your message" %>
+  </div>
+
+  <%= f.submit "Send" %>
+<% end %>

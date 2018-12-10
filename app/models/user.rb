@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :products
+
+  def chat_rooms
+    ChatRoom.where("sender_id = ? OR receiver_id = ?", self.id, self.id)
+  end
 end

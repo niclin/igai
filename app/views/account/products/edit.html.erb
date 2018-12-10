@@ -2,12 +2,25 @@
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :price %>
-  <% if @product.pictures.attached? %>
+
+
+<p>
+  <strong>Images</strong>
+
+  <div class="uploads"
+    data-controller="uploads"
+    data-uploads-model="<%= @product.to_json %>"
+    data-uploads-direct-upload-url="<%= rails_direct_uploads_path %>"
+  >
     <% @product.pictures.each do |picture| %>
-      <%= image_tag(picture.variant(resize: '100x100')) %>
-      <%= link_to '刪除', desctroy_account_product_path(@product, picture), method: :delete %>
+      <div class="img-wrapper">
+        <%= image_tag picture.variant(resize: '100x100') %>
+        <a href="<%= desctroy_account_product_path(@product, picture) %>" data-action="click->uploads#destroy">刪除</a>
+      </div>
     <% end %>
-  <% end %>
-  <%= f.input :pictures, as: :file, input_html: { multiple: true } %>
+
+    <input type="file" multiple="true" data-action="change->uploads#start">
+  </div>
+</p>
   <%= f.button :submit, class: "btn btn-success" %>
 <% end %>

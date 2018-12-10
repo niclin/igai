@@ -1,24 +1,40 @@
-# README
+# iGai 愛改
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Facebook 的買賣社團太容易被朋友監視，無聊寫的玩具
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby ~> 2.4
+- PostgreSQL >= 9.4
+- Redis
+- [anycable-go](https://github.com/anycable/anycable-go)
 
-* System dependencies
+## Setup
 
-* Configuration
+`$ cp config/database.example.yml config/database.yml`
 
-* Database creation
+run AnyCable RPC server:
 
-* Database initialization
+```
+$ bundle exec anycable
+```
 
-* How to run the test suite
+run AnyCable WebSocket server, e.g. [anycable-go](https://docs.anycable.io/#go_getting_started.md):
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ anycable-go --host=localhost --port=3334
+```
 
-* Deployment instructions
+Install node packages
 
-* ...
+```
+$ yarn install
+```
+
+Start server
+
+```
+$ rails server
+```
+
+

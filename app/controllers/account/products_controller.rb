@@ -1,14 +1,14 @@
 class Account::ProductsController < Account::BaseController
   def index
-    @products = Product.all
+    @products = current_user.products.all
   end
 
   def new
-    @product = Product.new
+    @product = current_user.products.new
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.new(product_params)
 
     if @product.save
       redirect_to account_products_path
@@ -18,11 +18,11 @@ class Account::ProductsController < Account::BaseController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product = current_user.products.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = current_user.products.find(params[:id])
 
     if @product.update(product_params)
       redirect_to account_products_path

@@ -1,15 +1,10 @@
 <ul>
-  <% @messages.each do |message| %>
-    <% if message.context %>
-      <li>
-        <h4><%= message.user.email %></h4>
-        <p><%= message.context %></p>
-      </li>
-    <% end %>
-  <% end %>
+  <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
+    <%= render partial: "messages/message", collection: @messages, as: :message %>
+  </div>
 </ul>
 
-<%= simple_form_for [@chat_room.messages.new] do |f| %>
+<%= simple_form_for @chat_room.messages.new, url: '#' do |f| %>
   <div class="field">
     <%= f.text_area :context, placeholder: "Your message" %>
   </div>

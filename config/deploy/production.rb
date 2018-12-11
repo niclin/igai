@@ -1,7 +1,6 @@
 set :branch, "master"
-set :rvm_ruby_version, '2.4.4'
 
-server "172.104.77.61", user: "apps", roles: %w{app db web}
+server "139.162.75.29", user: "deploy", roles: %w{app db web}
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.

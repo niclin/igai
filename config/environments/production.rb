@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
-  config.action_cable.url = "wss://igai-anycable-rpc.herokuapp.com/cable"
+  config.action_cable.url = "ws://172.104.77.61/cable"
 
   # Settings specified here will take precedence over those in config/application.rb.
 

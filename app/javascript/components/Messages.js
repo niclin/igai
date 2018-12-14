@@ -42,7 +42,7 @@ class Messages extends React.Component {
     const message = this.refs.newMessage.value
 
     if (message) {
-      this.refs.chat_rooms.perform('send_message', {user_id: this.props.user.id, message: message, chat_room_id: 1})
+      this.refs.chat_rooms.perform('send_message', {user_id: this.props.user.id, message: message, chat_room_id: this.props.chat_room.id})
       this.refs.newMessage.value = ''
     }
   }

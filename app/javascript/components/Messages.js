@@ -37,18 +37,18 @@ class Messages extends React.Component {
     this.scrollToBottom()
   }
 
-  sendMessage = () => {
+  sendMessage(event) {
+    event.preventDefault()
     const message = this.refs.newMessage.value
 
     if (message) {
-      this.refs.chat_rooms.perform('send_message', {user_id: this.props.current_user.id, message: message, chat_room_id: 1})
+      this.refs.chat_rooms.perform('send_message', {user_id: this.props.user.id, message: message, chat_room_id: 1})
       this.refs.newMessage.value = ''
     }
   }
 
   scrollToBottom() {
-    const scrollBottom = $(window).scrollTop() + $(window).height()
-    window.scrollTo(0, scrollBottom)
+    $(".chat-box__messages-histroy").scrollTop($(".chat-box__messages-histroy")[0].scrollHeight)
   }
 
   render () {
@@ -60,7 +60,7 @@ class Messages extends React.Component {
           <Message
             key={`chat.message.${message.id}`}
             message={message}
-            user={this.props.current_user}
+            user={this.props.user}
           />
         )
       })
@@ -71,13 +71,20 @@ class Messages extends React.Component {
       )
     }
     return (
-      <div className="row">
+      <div className="chat-box">
       <ActionCable ref='chat_rooms' channel={{channel: 'ChatRoomsChannel', chat_room_id: this.props.chat_room.id}} onReceived={this.onReceived} />
-        <div className="col-lg-12" id="messages">
-          {messages}
+        <div className="chat-box__messages-content">
+          <div className="chat-box__messages-histroy">
+            {messages}
+          </div>
+
+          <form onSubmit={this.sendMessage} noValidate="novalidate">
+            <div className="chat-box__input-wrapper">
+              <input className="chat-box__input" ref='newMessage' type='text' placeholder="輸入訊息﹍" autoFocus={true} />
+              <button type="submit" className="chat-box__submit-btn"><i className="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            </div>
+          </form>
         </div>
-        <input ref='newMessage' type='text' />
-        <button onClick={this.sendMessage}>Send</button>
       </div>
     )
   }

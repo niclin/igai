@@ -10,7 +10,7 @@ class Chat extends React.Component {
     super(props)
 
     this.state = {
-      current_user: this.props.current_user,
+      user: this.props.current_user,
       product: this.props.product,
       chat_room: this.props.chat_room
     }

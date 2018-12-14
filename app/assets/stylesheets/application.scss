@@ -16,6 +16,7 @@
 
 @import "bootstrap";
 @import "toastr";
+@import "font-awesome";
 
 .footer {
     position: absolute;
@@ -128,5 +129,90 @@ input[type=file][data-direct-upload-url][disabled] {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+
+.chat-box {
+  border: 1px solid #c4c4c4;
+  clear: both;
+  overflow: hidden;
+
+  &__messages-content {
+    float: left;
+    padding: 30px 15px 0 25px;
+    width: 100%;
+  }
+
+  &__messages-histroy {
+    height: 516px;
+    overflow-y: auto;
+  }
+
+  &__message {
+    margin: 10px 0 10px;
+
+    &--by-self {
+      float: right;
+      width: 51%;
+      .context  {
+        background: #ebebeb none repeat scroll 0 0;
+        border-radius: 3px;
+        color: #646464;
+        font-size: 14px;
+        padding: 5px 10px 5px 12px;
+        width: 100%;
+      }
+    }
+
+    &--by-other {
+      display: inline-block;
+      padding: 0 0 0 10px;
+      vertical-align: top;
+      width: 100%;
+
+      .context {
+        background: #05728f none repeat scroll 0 0;
+        border-radius: 3px;
+        font-size: 14px;
+        color: #fff;
+        padding: 5px 10px 5px 12px;
+        width: 47%;
+      }
+    }
+  }
+
+  &__input-wrapper {
+    position: relative;
+    border-top: 1px solid #c4c4c4;
+  }
+
+  &__input {
+    &:focus {
+      outline: none !important;
+    }
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 100%;
+  }
+
+  &__submit-btn {
+    &:focus {
+      outline: none !important;
+    }
+    background: #05728f none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 0;
+    top: 11px;
+    width: 33px;
   }
 }

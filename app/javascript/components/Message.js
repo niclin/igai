@@ -1,16 +1,23 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+const renderPositionCss = (current_user, message_user) => {
+  if (current_user.id == message_user.id) {
+    return "chat-box__message chat-box__message--by-self"
+  } else {
+    return "chat-box__message chat-box__message--by-other"
+  }
+}
+
 class Message extends React.Component {
+  componentDidMount() {
+    $(".chat-box__messages-histroy").scrollTop($(".chat-box__messages-histroy")[0].scrollHeight)
+  }
+
   render () {
     return (
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="chat-list__message">
-            <li>{this.props.message.user.email}</li>
-            <p>{this.props.message.context}</p>
-          </div>
-        </div>
+      <div className={renderPositionCss(this.props.user, this.props.message.user)}>
+        <p className="context">{this.props.message.context}</p>
       </div>
     );
   }

@@ -216,3 +216,21 @@ input[type=file][data-direct-upload-url][disabled] {
     width: 33px;
   }
 }
+
+.carousel-inner img {
+  margin: auto;
+}
+
+.carousel-inner {
+  &--black {
+    background-color: black;
+  }
+}
+
+.product-description {
+  margin-bottom: 25px;
+}
+
+nav {
+  margin-bottom: 20px;
+}

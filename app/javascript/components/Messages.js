@@ -67,7 +67,7 @@ class Messages extends React.Component {
 
     } else {
       messages = (
-        <p>Initializing chat room</p>
+        <p><i class="fa fa-spinner fa-spin"></i>聊天訊息加載中...</p>
       )
     }
     return (

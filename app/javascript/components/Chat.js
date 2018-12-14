@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Messages from "./Messages"
 import { ActionCableProvider } from 'react-actioncable-provider'
 
-const cable = ActionCable.createConsumer('wss://igai.info:3334/cable')
+const cable = ActionCable.createConsumer(process.env.NODE_ENV === 'production' ? 'wss://igai.info:3334/cable' : 'ws://localhost:3334/cable')
 
 class Chat extends React.Component {
   constructor(props) {

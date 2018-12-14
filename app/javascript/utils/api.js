@@ -3,7 +3,7 @@ import axios from 'axios'
 class Api {
   constructor() {
     this.$http = axios.create({
-      baseURL: 'https://igai.info'
+      baseURL: process.env.NODE_ENV === 'production' ? 'https://igai.info' : 'http://localhost:3000'
     })
   }
   getMessages (product_id, chat_room_id) {

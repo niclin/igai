@@ -5,6 +5,11 @@ class ChatRoomsController < ApplicationController
   def messages
     @product = Product.find(params[:id])
     @messages = @chat_room.messages
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @messages, each_serializer: MessageSerializer }
+    end
   end
 
   def require_sender_or_recevier!

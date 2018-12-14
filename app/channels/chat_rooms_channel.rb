@@ -8,6 +8,7 @@ class ChatRoomsChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    current_user.messages.create!(context: data['message'], chat_room_id: data['chat_room_id'])
+    user = User.find(data['user_id'])
+    user.messages.create!(context: data['message'], chat_room_id: data['chat_room_id'])
   end
 end

@@ -4,7 +4,7 @@ class ChatRoomsController < ApplicationController
 
   def messages
     @product = Product.find(params[:id])
-    @messages = @chat_room.messages
+    @messages = @chat_room.messages.includes(:user).asc
 
     respond_to do |format|
       format.html

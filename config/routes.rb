@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 
   resources :chat_rooms, only: "" do
     member do
-      resources :messages
+      resources :messages, only: "" do
+        collection do
+          post :read
+        end
+      end
     end
   end
 

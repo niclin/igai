@@ -2,6 +2,6 @@ class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    ActionCable.server.broadcast "chat_rooms_#{message.chat_room.id}_channel", message: MessageSerializer.new(message)
+    ActionCable.server.broadcast "chat_rooms_#{message.chat_room.id}_channel", { event: "new_message", message: MessageSerializer.new(message) }
   end
 end

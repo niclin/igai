@@ -9,6 +9,16 @@ const renderPositionCss = (current_user, message_user) => {
   }
 }
 
+const renderMessageStatus = (current_user, message) => {
+  if (current_user.id == message.user.id) {
+    if (message.read) {
+      return <i className="fa fa-check" />
+    } else {
+      return <i className="fa fa-circle-thin" />
+    }
+  }
+}
+
 class Message extends React.Component {
   componentDidMount() {
     $(".chat-box__messages-histroy").scrollTop($(".chat-box__messages-histroy")[0].scrollHeight)
@@ -18,6 +28,9 @@ class Message extends React.Component {
     return (
       <div className={renderPositionCss(this.props.user, this.props.message.user)}>
         <p className="context">{this.props.message.context}</p>
+        <div className="chat-box__timestamp">
+          {renderMessageStatus(this.props.user, this.props.message)}
+        </div>
       </div>
     );
   }

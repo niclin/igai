@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import moment from "moment"
 
 const renderPositionCss = (current_user, message_user) => {
   if (current_user.id == message_user.id) {
@@ -30,6 +31,7 @@ class Message extends React.Component {
         <p className="context">{this.props.message.context}</p>
         <div className="chat-box__timestamp">
           {renderMessageStatus(this.props.user, this.props.message)}
+          <small>{moment(this.props.message.created_at).format("MM/D kk:mm:ss")}</small>
         </div>
       </div>
     );

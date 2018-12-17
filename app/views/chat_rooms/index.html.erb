@@ -10,7 +10,7 @@
   <tbody>
     <% @chat_rooms.each do |chat_room| %>
       <tr>
-        <td><%= chat_room.recipients(current_user).email %></td>
+        <td><%= chat_room.recipients(current_user).name %></td>
         <td><%= chat_room.product.title %></td>
         <td><%= chat_room.product.price %></td>
         <td><%= link_to "聊天", messages_chat_room_path(chat_room) %>

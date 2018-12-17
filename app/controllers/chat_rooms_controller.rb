@@ -1,10 +1,14 @@
 class ChatRoomsController < ApplicationController
   before_action :find_chat_room, only: [:messages]
-  before_action :require_sender_or_recevier!
+  before_action :require_sender_or_recevier!, only: [:messages]
+
+  def index
+
+  end
 
   def messages
-    @product = Product.find(params[:id])
     @messages = @chat_room.messages.includes(:user).asc
+    @product = @chat_room.product
 
     respond_to do |format|
       format.html
@@ -12,13 +16,13 @@ class ChatRoomsController < ApplicationController
     end
   end
 
+  private
+
   def require_sender_or_recevier!
     redirect_back(fallback_location: root_path, notice: "沒有權限進入聊天室") if !@chat_room.access?(current_user)
   end
 
-  private
-
   def find_chat_room
-    @chat_room = ChatRoom.find(params[:chat_room_id])
+    @chat_room = ChatRoom.find(params[:id])
   end
 end

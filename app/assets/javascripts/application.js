@@ -16,4 +16,3 @@
 //= require bootstrap-sprockets
 //= require cable
 //= require toastr
-//= require turbolinks

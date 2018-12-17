@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   before_action :find_chat_room, only: [:create, :read]
 
   def create
-
     @message = @chat_room.messages.new(message_params)
     @message.user = current_user
 

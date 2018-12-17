@@ -12,8 +12,8 @@ class Api {
       }
     })
   }
-  getMessages (product_id, chat_room_id) {
-    return this.$http.get(`products/${product_id}/chat_rooms/${chat_room_id}/messages.json`)
+  getMessages (chat_room_id) {
+    return this.$http.get(`chat_rooms/${chat_room_id}/messages.json`)
   }
   markAllMessagesAsRead (chat_room_id, user_id) {
     return this.$http.post(`chat_rooms/${chat_room_id}/messages/read?&user_id=${user_id}`)

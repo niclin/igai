@@ -1,10 +1,11 @@
 class ChatRoom < ApplicationRecord
   belongs_to :product
-  belongs_to :user
+  belongs_to :sender , class_name: "User"
+  belongs_to :receiver, class_name: "User"
 
   has_many :messages
 
   def access?(user)
-    [product.user, self.user].include?(user)
+    [sender, receiver].include?(user)
   end
 end

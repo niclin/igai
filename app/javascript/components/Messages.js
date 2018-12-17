@@ -26,7 +26,7 @@ class Messages extends React.Component {
   }
 
   getMessages() {
-    Api.getMessages(this.props.product.id, this.props.chat_room.id).then(response => {
+    Api.getMessages(this.props.chat_room.id).then(response => {
       this.setState((prevState, props) => {
         return { messages: response.data, initialized: true }
       })

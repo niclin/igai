@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :find_product, only: [:show, :find_or_create_chat_room]
+
   impressionist actions: [:show]
 
   def index
@@ -10,10 +12,15 @@ class ProductsController < ApplicationController
   end
 
   def find_or_create_chat_room
-    @product = Product.find(params[:id])
     redirect_back(fallback_location: root_path) && return if @product.user == current_user
 
-    @chat_room = current_user.chat_rooms.find_or_create_by(product: @product, user: current_user)
-    redirect_to chat_room_messages_path(@product, @chat_room)
+    @chat_room = current_user.sender_chat_rooms.find_or_create_by(product: @product, receiver: @product.user)
+    redirect_to chat_room_messages_path(@chat_room)
+  end
+
+  private
+
+  def find_product
+    @product = Product.find(params[:id])
   end
 end

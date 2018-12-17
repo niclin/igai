@@ -1,0 +1,19 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">商品名稱</th>
+      <th scope="col">價錢</th>
+      <th scope="col">連結</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chat_rooms.each do |chat_room| %>
+      <tr>
+        <td><%= chat_room.product.title %></td>
+        <td><%= chat_room.product.price %></td>
+        <td><%= link_to "聊天", messages_chat_room_path(chat_room) %>
+        <small> 未讀: <%= render_messages_unread_count_by_chat_room(chat_room, current_user) %></small>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

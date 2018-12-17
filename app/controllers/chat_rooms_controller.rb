@@ -3,7 +3,7 @@ class ChatRoomsController < ApplicationController
   before_action :require_sender_or_recevier!, only: [:messages]
 
   def index
-
+    @chat_rooms = current_user.chat_rooms
   end
 
   def messages

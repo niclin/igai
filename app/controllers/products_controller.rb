@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     redirect_back(fallback_location: root_path) && return if @product.user == current_user
 
     @chat_room = current_user.sender_chat_rooms.find_or_create_by(product: @product, receiver: @product.user)
-    redirect_to chat_room_messages_path(@chat_room)
+    redirect_to messages_chat_room_path(@chat_room)
   end
 
   private

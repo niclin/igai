@@ -138,3 +138,15 @@ input[type=file][data-direct-upload-url][disabled] {
 .product-description {
   margin-bottom: 25px;
 }
+
+.unread-badge {
+  position: absolute;
+  top: -1px;
+  left: 17px;
+  color: #fff;
+  background: #F03A39;
+  transform: scale(0.7);
+  border-radius: 16px;
+  padding: 0 6px;
+  font-size: 12px;
+}

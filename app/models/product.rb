@@ -5,4 +5,8 @@ class Product < ApplicationRecord
   belongs_to :user
 
   has_many :chat_rooms
+
+  def owner?(user)
+    self.user == user
+  end
 end

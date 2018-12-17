@@ -57,6 +57,7 @@ class Messages extends React.Component {
 
     // send from the other user
     if (this.props.user.id != data.message.user.id) {
+      helpers.playSound()
       helpers.browserIfNotFocus()
     }
   }

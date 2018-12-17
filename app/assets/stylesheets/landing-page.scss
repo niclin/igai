@@ -1,0 +1,16 @@
+
+.masthead {
+  display: block;
+  background: linear-gradient(rgba(12,12,9,0.4), rgba(12,12,9,0.4)), asset_url("moto.png");
+  background-position: center 80%;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+@media (min-width: 768px) {
+  .masthead {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+}

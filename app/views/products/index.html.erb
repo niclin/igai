@@ -4,7 +4,10 @@
 <% @products.each do |product| %>
   <div class="col-md-3">
     <div class="card" style="width: 18rem;">
-      <h5 class="card-header"><%= product.title %></h5>
+      <div class="card-header">
+        <h5><%= product.title %></h5>
+      </div>
+
       <% if product.pictures.attached? %>
         <%= link_to product_path(product) do %>
           <%= image_tag(product.pictures.first.variant(resize: '100x100'), class: "card-img-top") %>

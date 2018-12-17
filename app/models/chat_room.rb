@@ -8,4 +8,9 @@ class ChatRoom < ApplicationRecord
   def access?(user)
     [sender, receiver].include?(user)
   end
+
+  def recipients(user)
+    return sender if user == receiver
+    return receiver if user == sender
+  end
 end

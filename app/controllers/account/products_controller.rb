@@ -24,7 +24,7 @@ class Account::ProductsController < Account::BaseController
 
   def edit
     @product = current_user.products.find(params[:id])
-    @product_attachments = @product.attachments
+    @product.attachments.build if @product.attachments.empty?
   end
 
   def update
@@ -36,14 +36,6 @@ class Account::ProductsController < Account::BaseController
     else
       render :edit
     end
-  end
-
-  def destroy_picture
-    @product = Product.find(params[:id])
-
-    @product.pictures.find(params[:picture_id]).purge
-
-    render json: { status: :ok }
   end
 
   private

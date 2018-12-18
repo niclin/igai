@@ -9,11 +9,9 @@
       </div>
 
       <% if product.product_attachments.present? %>
-        <% product.product_attachments.each do |attachment| %>
           <%= link_to product_path(product) do %>
-            <%= image_tag(attachment.image.url, class: "card-img-top") %>
+            <%= image_tag(product.product_attachments.first.image.url, class: "card-img-top") %>
           <% end %>
-        <% end %>
       <% end %>
       <div class="card-body">
         <p class="card-text"><%= product.description %></p>

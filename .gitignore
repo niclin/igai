@@ -33,3 +33,5 @@ yarn-debug.log*
 
 # Ignore Byebug command history file.
 config/database.yml
+
+public/uploads

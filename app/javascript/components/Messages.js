@@ -93,11 +93,15 @@ class Messages extends React.Component {
     $(".chat-box__messages-histroy").scrollTop($(".chat-box__messages-histroy")[0].scrollHeight)
   }
 
-  render () {
-    let messages
+  renderEmtpyMessageNotice () {
+    return (
+      <p>還沒有人講話喔</p>
+    )
+  }
 
-    if (this.state.initialized) {
-      messages = this.state.messages.map(message => {
+  renderMessages (messages) {
+    return (
+       messages.map(message => {
         return (
           <Message
             key={`chat.message.${message.id}`}
@@ -106,12 +110,28 @@ class Messages extends React.Component {
           />
         )
       })
+    )
+  }
 
+  renderInitializeNotice () {
+    return (
+      <p><i className="fa fa-spinner fa-spin"></i>聊天訊息加載中...</p>
+    )
+  }
+
+  render () {
+    let messages
+
+    if (this.state.initialized) {
+      if (this.state.messages.length === 0) {
+        messages = this.renderEmtpyMessageNotice()
+      } else {
+        messages = this.renderMessages(this.state.messages)
+      }
     } else {
-      messages = (
-        <p><i className="fa fa-spinner fa-spin"></i>聊天訊息加載中...</p>
-      )
+      messages = this.renderInitializeNotice()
     }
+
     return (
       <div className="chat-box">
       <ActionCable ref='chat_rooms' channel={{channel: 'ChatRoomsChannel', chat_room_id: this.props.chat_room.id}} onReceived={this.onReceived} />

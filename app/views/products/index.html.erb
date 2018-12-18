@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
   <% @products.each do |product| %>
-    <div class="col-md-3 col-lg-4">
+    <div class="mt-4 col-md-3 col-lg-4">
       <div class="card" style="width: 18rem;">
         <div class="card-header">
           <h5><%= product.title %></h5>
@@ -13,7 +13,16 @@
             <% end %>
         <% end %>
         <div class="card-body">
-          <p class="card-text"><%= render_product_description(product) %></p>
+          <p class="card-text">
+            <%= render_product_description(product) %>
+          </p>
+          <div class="text-secondary float-right">
+            <i class="fa fa-eye"></i> <%= product.impressionist_count(filter: :ip_address) %>
+          </div>
+
+          <span>
+            <%= render_product_price(product) %>
+          </span>
         </div>
       </div>
     </div>

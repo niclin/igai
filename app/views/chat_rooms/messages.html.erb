@@ -1,17 +1,4 @@
 <div class="row">
-  <div class="col-md-12">
-    <div class="product-description card">
-      <div class="card-header">
-        商品描述
-      </div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p><%= @product.description %></p>
-        </blockquote>
-      </div>
-    </div>
-  </div>
-
   <div class="col-md-6">
     <div class="carousel-warpper">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -19,7 +6,7 @@
         <% if @product.attachments.present? %>
           <% @product.attachments.each_with_index do |attachment, index| %>
             <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-              <%= image_tag(attachment.image.url, class: "d-block")%>
+              <%= image_tag(attachment.image.medium.url, class: "d-block")%>
             </div>
           <% end %>
         <% end %>
@@ -33,6 +20,16 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    </div>
+    <div class="product-description card">
+      <div class="card-header">
+        商品描述
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <%= sanitize @product.description %>
+        </blockquote>
+      </div>
     </div>
   </div>
 

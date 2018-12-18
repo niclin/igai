@@ -16,10 +16,10 @@
     <div class="carousel-warpper">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner carousel-inner--black">
-        <% if @product.pictures.attached? %>
-          <% @product.pictures.each_with_index do |picture, index| %>
+        <% if @product.attachments.present? %>
+          <% @product.attachments.each_with_index do |attachment, index| %>
             <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-              <%= image_tag(picture.variant(resize: '600x600'), class: "d-block")%>
+              <%= image_tag(attachment.image.url, class: "d-block")%>
             </div>
           <% end %>
         <% end %>

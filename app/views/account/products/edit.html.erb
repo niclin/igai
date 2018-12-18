@@ -3,11 +3,17 @@
   <%= f.input :description %>
   <%= f.input :price %>
 
-  <% if @product_attachments.present? %>
-    <% @product_attachments.each do |attachment| %>
-      <%= image_tag(attachment.image.thumb.url) %>
+  <%= f.nested_fields_for :attachments do |ff| %>
+    <fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;">
+    <%= ff.file_field :image, class: "file" %>
+    <% if ff.object.image.present? %>
+      已上傳圖片 <%= image_tag(ff.object.image.thumb.url) %>
     <% end %>
-  <% end %>
+    <%= ff.remove_nested_fields_link "移除", class: "btn btn-danger" %>
+    </fieldset>
+  <% end%>
+
+  <%= f.add_nested_fields_link :attachments, "上傳圖片" %>
 
   <hr>
   <br>

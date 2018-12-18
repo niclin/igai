@@ -8,9 +8,9 @@
         <h5><%= product.title %></h5>
       </div>
 
-      <% if product.product_attachments.present? %>
+      <% if product.attachments.present? %>
           <%= link_to product_path(product) do %>
-            <%= image_tag(product.product_attachments.first.image.url, class: "card-img-top") %>
+            <%= image_tag(product.attachments.first.image.url, class: "card-img-top") %>
           <% end %>
       <% end %>
       <div class="card-body">

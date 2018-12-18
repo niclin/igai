@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :find_or_create_chat_room]
+  before_action :authenticate_user!, only: [:find_or_create_chat_room]
 
   impressionist actions: [:show]
 

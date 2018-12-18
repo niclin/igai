@@ -8,9 +8,11 @@
         <h5><%= product.title %></h5>
       </div>
 
-      <% if product.pictures.attached? %>
-        <%= link_to product_path(product) do %>
-          <%= image_tag(product.pictures.first.variant(resize: '100x100'), class: "card-img-top") %>
+      <% if product.product_attachments.present? %>
+        <% product.product_attachments.each do |attachment| %>
+          <%= link_to product_path(product) do %>
+            <%= image_tag(attachment.image.url, class: "card-img-top") %>
+          <% end %>
         <% end %>
       <% end %>
       <div class="card-body">

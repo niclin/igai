@@ -3,24 +3,14 @@
   <%= f.input :description %>
   <%= f.input :price %>
 
-
-<p>
-  <strong>Images</strong>
-
-  <div class="uploads"
-    data-controller="uploads"
-    data-uploads-model="<%= @product.to_json %>"
-    data-uploads-direct-upload-url="<%= rails_direct_uploads_path %>"
-  >
-    <% @product.pictures.each do |picture| %>
-      <div class="img-wrapper">
-        <%= image_tag picture.variant(resize: '100x100') %>
-        <a href="<%= desctroy_account_product_path(@product, picture) %>" data-action="click->uploads#destroy">刪除</a>
-      </div>
+  <% if @product_attachments.present? %>
+    <% @product_attachments.each do |attachment| %>
+      <%= image_tag(attachment.image.thumb.url) %>
     <% end %>
+  <% end %>
 
-    <input type="file" multiple="true" data-action="change->uploads#start">
-  </div>
-</p>
+  <hr>
+  <br>
+
   <%= f.button :submit, class: "btn btn-success" %>
 <% end %>

@@ -5,13 +5,18 @@ class Account::ProductsController < Account::BaseController
 
   def new
     @product = current_user.products.new
+    @product_attachment = @product.product_attachments.build
   end
 
   def create
     @product = current_user.products.new(product_params)
 
     if @product.save
-      redirect_to account_products_path
+      params[:product_attachments]['image'].each do |image|
+        @product_attachment = @product.product_attachments.create!(image: image, product_id: @product.id)
+      end
+
+      redirect_to account_products_path, notice: 'Product was successfully created.'
     else
       render :new
     end
@@ -19,27 +24,13 @@ class Account::ProductsController < Account::BaseController
 
   def edit
     @product = current_user.products.find(params[:id])
+    @product_attachments = @product.product_attachments
   end
 
   def update
     @product = current_user.products.find(params[:id])
 
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to account_products_path }
-        format.json {
-          # 遵循慣例參數為陣列，但 DirectUpload 一次只會負責一張圖片
-          image = ActiveStorage::Blob.find_signed(product_params[:pictures].first)
-          # 從後端取的圖片（resize）的網址
-          image_url = Rails.application.routes.url_helpers.rails_representation_url(image.variant(resize: '100x100'), only_path: true)
 
-          render json: { status: :ok, url: image_url, id: image.id }
-          }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def destroy_picture
@@ -53,6 +44,6 @@ class Account::ProductsController < Account::BaseController
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, pictures: [])
+    params.require(:product).permit(:title, :description, :price, product_attachments_attributes: [:id, :product_id, :image])
   end
 end

@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   is_impressionable
-  has_many_attached :pictures
+
+  has_many :product_attachments, dependent: :destroy
+
+  accepts_nested_attributes_for :product_attachments
 
   belongs_to :user
 

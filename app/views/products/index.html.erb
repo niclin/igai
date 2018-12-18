@@ -9,7 +9,7 @@
 
         <% if product.attachments.present? %>
             <%= link_to product_path(product) do %>
-              <%= image_tag(product.attachments.first.image.url, class: "card-img-top") %>
+              <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
             <% end %>
         <% end %>
         <div class="card-body">

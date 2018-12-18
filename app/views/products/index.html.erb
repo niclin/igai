@@ -1,22 +1,22 @@
-<div class="row">
+<div class="container">
+  <div class="row">
+  <% @products.each do |product| %>
+    <div class="col-md-3 col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          <h5><%= product.title %></h5>
+        </div>
 
-
-<% @products.each do |product| %>
-  <div class="col-md-3">
-    <div class="card" style="width: 18rem;">
-      <div class="card-header">
-        <h5><%= product.title %></h5>
-      </div>
-
-      <% if product.attachments.present? %>
-          <%= link_to product_path(product) do %>
-            <%= image_tag(product.attachments.first.image.url, class: "card-img-top") %>
-          <% end %>
-      <% end %>
-      <div class="card-body">
-        <p class="card-text"><%= product.description %></p>
+        <% if product.attachments.present? %>
+            <%= link_to product_path(product) do %>
+              <%= image_tag(product.attachments.first.image.url, class: "card-img-top") %>
+            <% end %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text"><%= render_product_description(product) %></p>
+        </div>
       </div>
     </div>
+  <% end %>
   </div>
-<% end %>
 </div>

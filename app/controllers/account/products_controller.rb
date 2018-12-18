@@ -12,10 +12,6 @@ class Account::ProductsController < Account::BaseController
     @product = current_user.products.new(product_params)
 
     if @product.save
-      params[:product_attachments]['image'].each do |image|
-        @product_attachment = @product.attachments.create!(image: image, product_id: @product.id)
-      end
-
       redirect_to account_products_path, notice: 'Product was successfully created.'
     else
       render :new

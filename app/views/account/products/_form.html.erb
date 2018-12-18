@@ -1,6 +1,6 @@
 <%= simple_form_for [:account, @product] do |f| %>
   <%= f.input :title %>
-  <%= f.input :description %>
+  <%= f.input :description, as: :trix_editor %>
   <%= f.input :price %>
 
   <%= f.nested_fields_for :attachments do |ff| %>

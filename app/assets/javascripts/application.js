@@ -17,3 +17,4 @@
 //= require cable
 //= require toastr
 //= require nested_form_fields
+//= require trix

@@ -21,11 +21,22 @@
     </div>
   </div>
 
-  <% if !@product.owner?(current_user) %>
     <div class="col-md-6">
-      <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-primary btn-lg" %>
+    <div class="product-description card">
+      <div class="card-header">
+        商品描述
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><%= sanitize @product.description %></p>
+        </blockquote>
+      </div>
     </div>
-  <% end %>
+
+    <% if !@product.owner?(current_user) %>
+      <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
+    <% end %>
+    </div>
 </div>
 
 

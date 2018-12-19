@@ -1,8 +1,7 @@
 
 .masthead {
   display: block;
-  background: linear-gradient(rgba(12,12,9,0.4), rgba(12,12,9,0.4));
-  background-image: image-url("moto.png");
+  background: linear-gradient(rgba(12,12,9,0.4), rgba(12,12,9,0.4)), image-url("moto.png");
   background-position: center 80%;
   background-size: cover;
   padding-top: 8rem;

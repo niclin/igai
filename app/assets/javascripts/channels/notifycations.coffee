@@ -1,6 +1,5 @@
 App.notifycations = App.cable.subscriptions.create {
-  channel: "NotifycationsChannel",
-  user_id: gon.user_id
+  channel: "NotifycationsChannel"
 },
   connected: ->
     # Called when the subscription is ready for use on the server

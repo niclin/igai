@@ -13,4 +13,33 @@
     padding-top: 12rem;
     padding-bottom: 12rem;
   }
+  .showcase {
+    .showcase-text {
+      padding: 7rem;
+    }
+  }
 }
+
+.showcase {
+  &-img {
+    min-height: 30rem;
+    background-size: cover;
+  }
+
+  &-bg-1 {
+    background-image: asset_url("showcase-1.jpg");
+  }
+
+  &-bg-2 {
+    background-image: asset_url("showcase-2.jpg");
+  }
+
+  &-bg-3 {
+    background-image: asset_url("showcase-3.jpg");
+  }
+
+  .showcase-text {
+    padding: 3rem;
+  }
+}
+

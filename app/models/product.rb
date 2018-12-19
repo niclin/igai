@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  is_impressionable
+  is_impressionable counter_cache: true, unique: true
 
   has_many :attachments, class_name: "ProductAttachment", dependent: :destroy
   has_many :chat_rooms

@@ -6,6 +6,8 @@ class Message < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
   scope :asc, -> { order(id: :asc) }
 
+  validates :context, presence: true
+
   after_create_commit { MessageBroadcastJob.perform_later(self) }
 
   def read?

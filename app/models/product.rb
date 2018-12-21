@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
   is_impressionable counter_cache: true, unique: true
 
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+
   has_many :attachments, class_name: "ProductAttachment", dependent: :destroy
   has_many :chat_rooms
 

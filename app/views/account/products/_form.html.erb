@@ -1,20 +1,60 @@
-<%= simple_form_for [:account, @product] do |f| %>
+<%= simple_form_for [:account, @product], html: { class: "dropzone", id: "new_product_form" } do |f| %>
+
   <%= f.input :title %>
   <%= f.input :description, as: :trix_editor %>
   <%= f.input :price %>
 
-  <%= f.nested_fields_for :attachments do |ff| %>
-    <fieldset style="border-left: 5px solid #bbb; margin-bottom: 10px; padding: 10px;">
-    <%= ff.file_field :image, class: "file" %>
-    <%= image_tag(ff.object.image.thumb.url) if ff.object.image.present? %>
-    <%= ff.remove_nested_fields_link "移除", class: "btn btn-danger" %>
-    </fieldset>
-  <% end%>
-
-  <%= f.add_nested_fields_link :attachments, "上傳圖片" %>
-
-  <hr>
-  <br>
+  <div id="dropzone-click-target">點我上傳圖片</div>
+  <div id="dropzonePreview"></div>
 
   <%= f.button :submit, class: "btn btn-success" %>
 <% end %>
+
+
+  <script>
+Dropzone.options.newProductForm = { // The camelized version of the ID of the form element
+
+  // The configuration we've talked about above
+  autoProcessQueue: false,
+  uploadMultiple: true,
+  parallelUploads: 100,
+  maxFiles: 100,
+  paramName1: "product[attachments_attributes]",
+  paramName2: "[image]",
+  addRemoveLinks: true,
+  autoDiscover: false,
+  previewsContainer: '#dropzonePreview',
+  clickable: '#dropzone-click-target', // this tells that the dropzone will not be clickable . we have to do it because v dont want the whole form to be clickable
+  acceptedFiles: "image/*",
+
+  // The setting up of the dropzone
+  init: function() {
+    $('.dz-message').css('display','none');
+    var myDropzone = this;
+
+    // First change the button to actually tell Dropzone to process the queue.
+    this.element.querySelector("input[type=submit]").addEventListener("click", function(e) {
+      // Make sure that the form isn't actually being sent.
+      e.preventDefault();
+      e.stopPropagation();
+      myDropzone.processQueue();
+    });
+
+    // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
+    // of the sending event because uploadMultiple is set to true.
+    this.on("sendingmultiple", function() {
+      // Gets triggered when the form is actually being sent.
+      // Hide the success button or the complete form.
+    });
+    this.on("successmultiple", function(files, response) {
+      // Gets triggered when the files have successfully been sent.
+      // Redirect user or notify of success.
+    });
+    this.on("errormultiple", function(files, response) {
+      // Gets triggered when there was an error sending the files.
+      // Maybe show form again, and notify user of error
+    });
+  }
+
+}
+  </script>

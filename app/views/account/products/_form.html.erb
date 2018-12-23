@@ -54,11 +54,16 @@
 <% end %>
 
   </div>
-  <%= f.button :submit, "儲存", class: "btn btn-primary" %>
+  <%= f.button :submit, "儲存", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
 <% end %>
 
 
 <script>
+autosize(document.querySelectorAll('textarea'));
+
+// 避免 render :edit 還帶著刪除圖片的 checkbox
+$('input:checkbox').removeAttr('checked');
+
 Dropzone.options.productForm = { // The camelized version of the ID of the form element
 
   // The configuration we've talked about above
@@ -118,7 +123,6 @@ Dropzone.options.productForm = { // The camelized version of the ID of the form 
     this.on("errormultiple", function(files, response) {
       // Gets triggered when there was an error sending the files.
       // Maybe show form again, and notify user of error
-      window.location.reload();
     });
   }
 }
@@ -129,6 +133,4 @@ function removeImage(input) {
   $('input[name$=' + "'" + input + '[_destroy]' + "'" + ']').val(1)
   gon.product_remainder_attachment_quota = gon.product_remainder_attachment_quota - 1
 }
-
-autosize(document.querySelectorAll('textarea'));
 </script>

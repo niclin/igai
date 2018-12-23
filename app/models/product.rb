@@ -14,8 +14,6 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :attachments, allow_destroy: true, reject_if: :all_blank
 
-  before_destroy :check_attachment_presence
-
   def owner?(user)
     self.user == user
   end

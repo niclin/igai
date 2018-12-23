@@ -1,13 +1,14 @@
 <% Gon.product_remainder_attachment_quota = @product.remainder_attachment_quota %>
 
 <%= simple_form_for [:account, @product], html: { multipart: true, class: "dropzone", id: "product_form" } do |f| %>
-     <div id="error_explanation">
-        <ul>
-          <% @product.errors.full_messages.each do |msg| %>
-            <li> * <%= msg %></li>
-          <% end %>
-        </ul>
-     </div>
+  <div id="error_explanation">
+    <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li> * <%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+
   <%= f.input :title %>
   <%= f.input :description, as: :text %>
   <%= f.input :price %>
@@ -16,40 +17,22 @@
   <%= f.simple_fields_for :attachments do |attachment| %>
     <% if !attachment.object.new_record? %>
       <div class="dz-preview dz-image-preview" name="<%= attachment.object_name %>">
-        <div style="    border-radius: 20px;
-              overflow: hidden;
-                  width: 120px;
-                      height: 120px;
-                          position: relative;
-                              display: block;
-                                  z-index: 10;">
+        <div class="mini-img">
           <%= image_tag attachment.object.image.thumb.url %>
         </div>
       <%= attachment.check_box :_destroy, class: "d-none" %>
       <a class="dz-remove" href="javascript:undefined;" onclick="removeImage('<%= attachment.object_name %>')">刪除圖片</a>
-
-
       </div>
     <% end %>
   <% end %>
 
-      <% @current_product_attachments_count = f.object.new_record? ? 0 : f.object.attachments.count %>
-
-
+  <% @current_product_attachments_count = f.object.new_record? ? 0 : f.object.attachments.count %>
 
   <div id="dropzonePreview" style="display: inline;"></div>
+
   <% if !@product.remainder_attachment_quota.zero? %>
-  <div id="dropzone-click-target" style="    border: 2px dashed #dddfe2;
-      height: 120px;
-      width: 120px;
-      position: relative;
-          display: inline-block;
-              margin: 16px;
-                                      cursor: pointer;
-      ">
-    <i class="text-secondary fa fa-plus fa-2x" style="    position: absolute;
-        top: 40%;
-            left: 40%;"></i>
+  <div id="dropzone-click-target" class="product-form-dropzone-target" >
+    <i class="text-secondary fa fa-plus fa-2x product-form-dropzone-target--plus-symbol"></i>
   </div>
 <% end %>
 

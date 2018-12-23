@@ -32,10 +32,6 @@
   }
 }
 
-.product-description {
-  margin-bottom: 25px;
-}
-
 .unread-badge {
   position: absolute;
   top: -1px;
@@ -63,3 +59,18 @@
     height: 120px;
 }
 
+.product-form-dropzone-target {
+    border: 2px dashed #dddfe2;
+    height: 120px;
+    width: 120px;
+    position: relative;
+    display: inline-block;
+    margin: 16px;
+    cursor: pointer;
+
+    &--plus-symbol {
+      position: absolute;
+      top: 40%;
+      left: 40%;
+    }
+}

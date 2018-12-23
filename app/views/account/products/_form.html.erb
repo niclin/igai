@@ -17,10 +17,8 @@
   <%= f.simple_fields_for :attachments do |attachment| %>
     <% if !attachment.object.new_record? %>
       <div class="dz-preview dz-image-preview" name="<%= attachment.object_name %>">
-        <div class="mini-img">
-          <%= image_tag attachment.object.image.thumb.url %>
-        </div>
-      <%= attachment.check_box :_destroy, class: "d-none" %>
+        <%= image_tag(attachment.object.image.thumb.url, class: "mini-img") %>
+        <%= attachment.check_box :_destroy, class: "d-none" %>
       <a class="dz-remove" href="javascript:undefined;" onclick="removeImage('<%= attachment.object_name %>')">刪除圖片</a>
       </div>
     <% end %>

@@ -6,10 +6,15 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.paginate(page: params[:page], per_page: 10)
+
+    set_meta_tags title: "商品一覽"
   end
 
   def show
     @product = Product.find(params[:id])
+
+    set_meta_tags title: @product.title,
+                  description: @product.description
   end
 
   def find_or_create_chat_room

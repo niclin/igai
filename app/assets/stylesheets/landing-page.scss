@@ -28,14 +28,23 @@
 
   &-bg-1 {
     background-image: image-url("showcase-1.jpg");
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
   }
 
   &-bg-2 {
     background-image: image-url("showcase-2.jpg");
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
   }
 
   &-bg-3 {
     background-image: image-url("showcase-3.jpg");
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
   }
 
   .showcase-text {
@@ -43,3 +52,41 @@
   }
 }
 
+.site-about {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.call-to-action {
+  position: relative;
+  background-color: #343a40;
+  background: image-url("motor.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: .3;
+  }
+}
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+
+  .testimonial-item img {
+      max-width: 12rem;
+      -webkit-box-shadow: 0 5px 5px 0 #adb5bd;
+      box-shadow: 0 5px 5px 0 #adb5bd;
+  }
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}

@@ -35,7 +35,7 @@
 <% end %>
 
   </div>
-  <%= f.button :submit, "儲存", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+  <%= f.button :submit, "儲存", class: "btn btn-primary", data: { disable_with: "儲存中..." } %>
 <% end %>
 
 
@@ -79,6 +79,7 @@ Dropzone.options.productForm = { // The camelized version of the ID of the form 
       e.stopPropagation();
       if (myDropzone.getQueuedFiles().length > 0) {
         myDropzone.processQueue();
+        $('input[data-disable-with]').attr("disabled", true).val("儲存中...")
       } else {
         $("#product_form").off('submit').submit();
       }

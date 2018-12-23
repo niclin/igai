@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   impressionist actions: [:show]
 
   def index
-    @products = Product.all
+    @products = Product.all.paginate(page: params[:page], per_page: 10)
   end
 
   def show

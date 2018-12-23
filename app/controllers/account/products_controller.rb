@@ -1,6 +1,6 @@
 class Account::ProductsController < Account::BaseController
   def index
-    @products = current_user.products.all
+    @products = current_user.products.all.paginate(page: params[:page], per_page: 10)
   end
 
   def new

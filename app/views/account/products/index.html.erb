@@ -1,6 +1,12 @@
-<%= link_to "Add new product", new_account_product_path, class: "btn btn-primary" %>
+<div class="container">
+<div class="mt-4 row">
+  <div class="container text-center">
+    <h1>我的商品管理</h1>
+    <%= link_to "新增商品", new_account_product_path, class: "btn btn-primary" %>
+  </div>
+</div>
 
-<div class="row">
+<div class="mt-4 row">
   <div class="col-md-12">
     <table class="table table-striped">
       <thead>
@@ -16,7 +22,7 @@
       <tbody>
         <% @products.each do |product| %>
         <tr>
-          <td><%= image_tag product.attachments.first.image.thumb.url if product.attachments.present? %></td>
+          <td><%= image_tag(product.attachments.first.image.thumb.url, class: "mini-img") if product.attachments.present? %></td>
           <td><%= product.title %></td>
           <td><%= render_product_description(product) %></td>
           <td><%= product.price %> 元</td>
@@ -27,4 +33,5 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>

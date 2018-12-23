@@ -9,10 +9,10 @@
         </ul>
      </div>
   <%= f.input :title %>
-  <%= f.input :description, as: :trix_editor %>
+  <%= f.input :description, as: :text %>
   <%= f.input :price %>
 
-  <div class="form-group">
+  <div class="form-group required product_attachments form-group-invalid">
   <%= f.simple_fields_for :attachments do |attachment| %>
     <% if !attachment.object.new_record? %>
       <div class="dz-preview dz-image-preview" name="<%= attachment.object_name %>">
@@ -118,6 +118,7 @@ Dropzone.options.productForm = { // The camelized version of the ID of the form 
     this.on("errormultiple", function(files, response) {
       // Gets triggered when there was an error sending the files.
       // Maybe show form again, and notify user of error
+      window.location.reload();
     });
   }
 }
@@ -128,4 +129,6 @@ function removeImage(input) {
   $('input[name$=' + "'" + input + '[_destroy]' + "'" + ']').val(1)
   gon.product_remainder_attachment_quota = gon.product_remainder_attachment_quota - 1
 }
+
+autosize(document.querySelectorAll('textarea'));
 </script>

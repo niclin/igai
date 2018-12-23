@@ -16,5 +16,5 @@
 //= require cable
 //= require toastr
 //= require nested_form_fields
-//= require trix
+//= require autosize.min
 //= require dropzone

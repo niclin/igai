@@ -14,7 +14,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     set_meta_tags title: @product.title,
-                  description: @product.description
+                  description: @product.description,
+                  og: {
+                    title: @product.title,
+                    image: @product.attachments.map { |attachment| attachment.image.medium.url }
+                  }
   end
 
   def find_or_create_chat_room

@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   layout "home"
 
   def index
-    set_meta_tags title: "最好用的機車二手精品交流買賣網"
+    set_meta_tags title: "最好用的機車二手精品交流買賣網",
+                  og: {
+                    image: ActionController::Base.helpers.asset_path('showcase-3.jpg')
+                  }
   end
 end

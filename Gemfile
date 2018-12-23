@@ -59,8 +59,6 @@ gem "fog"
 
 gem 'nested_form_fields'
 
-gem "trix-rails", require: 'trix'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

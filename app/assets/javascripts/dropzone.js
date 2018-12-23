@@ -1429,7 +1429,7 @@ var Dropzone = function (_Emitter) {
       if (typeof this.options.paramName === "function") {
         return this.options.paramName(n);
       } else {
-        return "" + this.options.paramName1 + (this.options.uploadMultiple ? "[" + n + "]" : "") + this.options.paramName2 + "";
+        return "" + this.options.paramName1 + (this.options.uploadMultiple ? "[" + (this.options.currentImagesCount + n) + "]" : "") + this.options.paramName2 + "";
       }
     }
 

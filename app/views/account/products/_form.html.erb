@@ -1,18 +1,65 @@
-<%= simple_form_for [:account, @product], html: { class: "dropzone", id: "new_product_form" } do |f| %>
+<% Gon.product_remainder_attachment_quota = @product.remainder_attachment_quota %>
 
+<%= simple_form_for [:account, @product], html: { multipart: true, class: "dropzone", id: "product_form" } do |f| %>
+     <div id="error_explanation">
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li> * <%= msg %></li>
+          <% end %>
+        </ul>
+     </div>
   <%= f.input :title %>
   <%= f.input :description, as: :trix_editor %>
   <%= f.input :price %>
 
-  <div id="dropzone-click-target">點我上傳圖片</div>
-  <div id="dropzonePreview"></div>
+  <div class="form-group">
+  <%= f.simple_fields_for :attachments do |attachment| %>
+    <% if !attachment.object.new_record? %>
+      <div class="dz-preview dz-image-preview" name="<%= attachment.object_name %>">
+        <div style="    border-radius: 20px;
+              overflow: hidden;
+                  width: 120px;
+                      height: 120px;
+                          position: relative;
+                              display: block;
+                                  z-index: 10;">
+          <%= image_tag attachment.object.image.thumb.url %>
+        </div>
+      <%= attachment.check_box :_destroy, class: "d-none" %>
+      <a class="dz-remove" href="javascript:undefined;" onclick="removeImage('<%= attachment.object_name %>')">刪除圖片</a>
 
-  <%= f.button :submit, class: "btn btn-success" %>
+
+      </div>
+    <% end %>
+  <% end %>
+
+      <% @current_product_attachments_count = f.object.new_record? ? 0 : f.object.attachments.count %>
+
+
+
+  <div id="dropzonePreview" style="display: inline;"></div>
+  <% if !@product.remainder_attachment_quota.zero? %>
+  <div id="dropzone-click-target" style="    border: 2px dashed #dddfe2;
+      height: 120px;
+      width: 120px;
+      position: relative;
+          display: inline-block;
+              margin: 16px;
+                                      cursor: pointer;
+      ">
+    <i class="text-secondary fa fa-plus fa-2x" style="    position: absolute;
+        top: 40%;
+            left: 40%;"></i>
+  </div>
+<% end %>
+
+  </div>
+  <%= f.button :submit, "儲存", class: "btn btn-primary" %>
 <% end %>
 
 
-  <script>
-Dropzone.options.newProductForm = { // The camelized version of the ID of the form element
+<script>
+Dropzone.options.productForm = { // The camelized version of the ID of the form element
 
   // The configuration we've talked about above
   autoProcessQueue: false,
@@ -24,8 +71,14 @@ Dropzone.options.newProductForm = { // The camelized version of the ID of the fo
   addRemoveLinks: true,
   autoDiscover: false,
   previewsContainer: '#dropzonePreview',
-  clickable: '#dropzone-click-target', // this tells that the dropzone will not be clickable . we have to do it because v dont want the whole form to be clickable
+  // this tells that the dropzone will not be clickable . we have to do it because v dont want the whole form to be clickable
+  clickable: '#dropzone-click-target',
   acceptedFiles: "image/*",
+  // bad way to upload image when server side :(
+  currentImagesCount: <%= @current_product_attachments_count %>,
+  dictRemoveFile: "刪除圖片",
+  maxFilesize: 5,
+  maxFiles: gon.product_remainder_attachment_quota,
 
   // The setting up of the dropzone
   init: function() {
@@ -37,7 +90,18 @@ Dropzone.options.newProductForm = { // The camelized version of the ID of the fo
       // Make sure that the form isn't actually being sent.
       e.preventDefault();
       e.stopPropagation();
-      myDropzone.processQueue();
+      if (myDropzone.getQueuedFiles().length > 0) {
+        myDropzone.processQueue();
+      } else {
+        $("#product_form").off('submit').submit();
+      }
+    });
+
+    this.on("maxfilesexceeded", function(file){
+      this.removeFile(file)
+      if (!$(".toast-message").length) {
+        toastr.warning("您最多只能上傳 <%= Product::ATTACHMENT_LIMIT %> 張圖片")
+      }
     });
 
     // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
@@ -49,12 +113,19 @@ Dropzone.options.newProductForm = { // The camelized version of the ID of the fo
     this.on("successmultiple", function(files, response) {
       // Gets triggered when the files have successfully been sent.
       // Redirect user or notify of success.
+      window.location.replace(response.redirectURL)
     });
     this.on("errormultiple", function(files, response) {
       // Gets triggered when there was an error sending the files.
       // Maybe show form again, and notify user of error
     });
   }
-
 }
-  </script>
+
+function removeImage(input) {
+  var element = $('div[name$=' + "'" + input+ "'" + ']')
+  element.addClass("d-none")
+  $('input[name$=' + "'" + input + '[_destroy]' + "'" + ']').val(1)
+  gon.product_remainder_attachment_quota = gon.product_remainder_attachment_quota - 1
+}
+</script>

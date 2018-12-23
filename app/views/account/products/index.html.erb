@@ -5,16 +5,18 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th scope="col">圖片</th>
           <th scope="col">標題</th>
           <th scope="col">敘述</th>
           <th scope="col">價格</th>
           <th scope="col">人氣</th>
-          <th scope="col">#</th>
+          <th scope="col">功能</th>
         </tr>
       </thead>
       <tbody>
         <% @products.each do |product| %>
         <tr>
+          <td><%= image_tag product.attachments.first.image.thumb.url if product.attachments.present? %></td>
           <td><%= product.title %></td>
           <td><%= render_product_description(product) %></td>
           <td><%= product.price %> 元</td>

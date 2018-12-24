@@ -67,6 +67,11 @@ gem 'meta-tags'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'koala' # 可以將錯誤的 session 刪掉避免註冊失敗
+
 group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'

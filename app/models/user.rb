@@ -4,7 +4,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   validates :name, presence: true, length: { minimum: 5 }, if: :name_changed?, on: :update
 
@@ -35,6 +36,38 @@ class User < ApplicationRecord
     email_user_name = self.email.split("@").first.tr(".", "_")
 
     self.name = valid_user_name?(email_user_name) ? email_user_name : random_user_name
+  end
+
+  def self.from_omniauth(auth, signed_in_resource = nil)
+    identity = Identity.find_for_oauth(auth)
+
+    user = signed_in_resource ? signed_in_resource : identity.user
+
+    if user.nil?
+      email = auth.info.email
+
+      user = User.where(email: email).first if email
+
+      if user.nil?
+        user = User.new(name: auth.info.name.gsub(/\s+/, '_'),
+                        email: auth.info.email,
+                        avatar: auth.info.image,
+                        password: Devise.friendly_token[0,20])
+        user.save!
+      end
+    end
+
+    if identity.user != user
+      identity.user = user
+      identity.save!
+    end
+
+    user
+  end
+
+  def delete_access_token(auth)
+    @graph ||= Koala::Facebook::API.new(auth.credentials.token)
+    @graph.delete_connections(auth.uid, "permissions")
   end
 
   private

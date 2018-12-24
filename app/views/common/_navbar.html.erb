@@ -13,8 +13,10 @@
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li class="nav-item position-relative">
-          <a class="nav-link">Hi, <%= current_user.name %></a>
-          <%= image_tag(current_user.avatar.thumb.url) if current_user.avatar.present? %>
+          <a class="nav-link">
+            Hi, <%= current_user.name %>
+            <%= image_tag(current_user.avatar.thumb.url, class: "navbar-avatar") if current_user.avatar.present? %>
+          </a>
         </li>
           <li class="nav-item position-relative">
             <%= link_to(chat_rooms_path, class: "nav-link") do %>

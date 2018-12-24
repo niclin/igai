@@ -53,7 +53,7 @@ class User < ApplicationRecord
       if user.nil?
         user = User.new(name: auth.info.name.gsub(/\s+/, '_'),
                         email: auth.info.email,
-                        avatar: auth.info.image,
+                        remote_avatar_url: auth.info.image,
                         password: Devise.friendly_token[0,20])
         user.save!
       end

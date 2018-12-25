@@ -4,6 +4,8 @@ class ChatRoomsController < ApplicationController
 
   def index
     @chat_rooms = current_user.chat_rooms
+
+    set_meta_tags title: "訊息收件匣"
   end
 
   def messages
@@ -14,6 +16,8 @@ class ChatRoomsController < ApplicationController
       format.html
       format.json { render json: @messages, each_serializer: MessageSerializer }
     end
+
+    set_meta_tags title: "和 #{@chat_room.recipients(current_user).name} 的對話"
   end
 
   private

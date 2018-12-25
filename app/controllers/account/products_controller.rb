@@ -1,10 +1,14 @@
 class Account::ProductsController < Account::BaseController
   def index
     @products = current_user.products.includes(:attachments).all.paginate(page: params[:page], per_page: 10)
+
+    set_meta_tags title: "我的商品列表"
   end
 
   def new
     @product = current_user.products.new
+
+    set_meta_tags title: "新增商品"
   end
 
   def create
@@ -24,6 +28,8 @@ class Account::ProductsController < Account::BaseController
 
   def edit
     @product = current_user.products.find(params[:id])
+
+    set_meta_tags title: "編輯 #{@product.title} 商品"
   end
 
   def update

@@ -13,10 +13,10 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
-    set_meta_tags title: @product.title,
+    set_meta_tags title: combine_type_and_title(@product),
                   description: @product.description,
                   og: {
-                    title: @product.title,
+                    title: combine_type_and_title(@product),
                     image: @product.attachments.map { |attachment| attachment.image.medium.url }
                   }
   end
@@ -32,5 +32,9 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find(params[:id])
+  end
+
+  def combine_type_and_title(product)
+    "#{I18n.t("general.product_type.#{product.product_type}")} #{product.title}"
   end
 end

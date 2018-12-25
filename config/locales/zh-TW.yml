@@ -1,5 +1,11 @@
 ---
 zh-TW:
+  general:
+    product_type:
+      buy: 收購
+      sell: 出售
+      exchange: 交流
+
   activerecord:
     attributes:
       product:

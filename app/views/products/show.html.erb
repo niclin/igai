@@ -1,6 +1,6 @@
 <div class="container">
-<div class="mt-4 row">
-  <div class="col-md-6">
+<div class="mt-4 mb-4 row">
+  <div class="col-md-6 mb-4">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <% if @product.attachments.present? %>
@@ -23,29 +23,42 @@
   </div>
 
   <div class="col-md-6">
-    <h1><%= @product.title %></h1>
-    <li>
-      <span class="text-muted">刊登日期： <%= @product.created_at.to_s(:ymd) %>
-    </li>
-    <li>
-      <span class="text-muted">點閱次數：<%= @product.impressions_count %>
-    </li>
-    <li>
-      <span class="text-muted">售價：<%= @product.price %> 元</span>
-    </li>
-    <div class="product-description card">
+
+    <div class="product-description card mb-3">
       <div class="card-header">
-        商品描述
+        商品資訊
       </div>
       <div class="card-body">
+        <h1><%= @product.title %></h1>
+
+        <hr>
+
+        <ul>
+          <li>
+            <span class="text-muted">刊登日期： <%= @product.created_at.to_s(:ymd) %></span>
+          </li>
+          <li>
+            <span class="text-muted">點閱次數：<%= @product.impressions_count %> 次</span>
+          </li>
+          <li>
+            <span class="text-muted">賣家資訊: <%=@product.user.name %></span>
+          </li>
+        </ul>
+
+        <hr>
+
         <blockquote class="blockquote mb-0">
           <%= sanitize @product.description %>
         </blockquote>
       </div>
     </div>
 
+    <div class="pull-right">
+    <p class="lead">售價：<%= @product.price %> 元</p>
+
   <% if !@product.owner?(current_user) %>
-    <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
+      <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
+    </div>
   <% end %>
   </div>
 </div>

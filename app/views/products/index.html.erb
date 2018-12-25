@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
   <% @products.each do |product| %>
-    <div class="mt-4 col-md-3 col-lg-4">
+    <div class="mt-4 col-md-4 col-lg-4">
       <div class="card">
         <div class="card-header">
           <%= render_product_type_badge(product) %>
-          <h5 class="d-inline-block"><%= product.title %></h5>
+          <h5 class="d-inline-block"><%= render_product_title(product) %></h5>
         </div>
 
         <% if product.attachments.present? %>
-            <%= link_to product_path(product) do %>
-              <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
-            <% end %>
+          <%= link_to product_path(product) do %>
+            <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
+          <% end %>
         <% end %>
         <div class="card-body">
           <p class="card-text">

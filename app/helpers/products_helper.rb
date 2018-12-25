@@ -3,6 +3,10 @@ module ProductsHelper
     truncate(product.description, length: 30)
   end
 
+  def render_product_title(product)
+    truncate(product.title, length: 20)
+  end
+
   def render_product_price(product)
     "價格：#{product.price} 元"
   end

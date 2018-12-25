@@ -4,8 +4,8 @@ class Product < ApplicationRecord
 
   is_impressionable counter_cache: true, unique: true
 
-  validates :title, presence: true
-  validates :description, presence: true
+  validates :title, presence: true, length: { maximum: 70 }
+  validates :description, presence: true, length: { maximum: 500 }
   validates :price, presence: true, if: -> { product_type == "exchange" }
   validates :product_type, presence: true, inclusion: { in: TYPE }
   validates :attachments, length: { minimum: 1, message: "請至少上傳一張照片" }

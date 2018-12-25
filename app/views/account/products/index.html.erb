@@ -8,6 +8,7 @@
 
   <div class="mt-4 row">
     <div class="col-md-12">
+      <div class="table-responsive-sm">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -34,7 +35,7 @@
               </div>
             <% end %>
             </td>
-            <td><%= product.title %></td>
+            <td><%= render_product_title(product) %></td>
             <td><%= render_product_description(product) %></td>
             <td><%= product.price %> 元</td>
             <td><%= product.impressions_count %> 次</td>
@@ -43,6 +44,7 @@
           <% end %>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 

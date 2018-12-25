@@ -11,7 +11,10 @@
 
   <%= f.input :product_type, collection: Product::TYPE.map(&:to_sym), include_blank: false %>
   <%= f.input :title %>
+
   <%= f.input :category_ids, label: "適用車系", collection: Category.all, input_html: { id: "js-catrgories-multiple-select", multiple: true } %>
+
+  <small>快速選取：<a href="#" id="1to3cygnus">1-3代勁戰</a></small>
   <%= f.input :description, as: :text %>
   <%= f.input :price %>
 
@@ -51,6 +54,10 @@ $(document).ready(function() {
     maximumSelectionLength: 5
   });
 });
+
+$("#1to3cygnus").click(function() {
+  $('#js-catrgories-multiple-select').val([1, 2, 3]).change()
+})
 
 autosize(document.querySelectorAll('textarea'));
 

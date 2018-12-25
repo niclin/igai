@@ -85,3 +85,16 @@
 .product-image {
   border-radius: 20px;
 }
+
+.moto-tag-container {
+  margin-bottom: 15px;
+
+  .moto-tag {
+    display: inline-block;
+    background-color: #DADADA;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 1px 3px 1px 3px;
+  }
+}
+

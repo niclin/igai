@@ -1,6 +1,6 @@
 class Account::ProductsController < Account::BaseController
   def index
-    @products = current_user.products.includes(:attachments).all.paginate(page: params[:page], per_page: 10)
+    @products = current_user.products.includes(:attachments, :categories).all.paginate(page: params[:page], per_page: 10)
 
     set_meta_tags title: "我的商品列表"
   end

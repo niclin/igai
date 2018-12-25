@@ -17,6 +17,17 @@
           <p class="card-text">
             <%= render_product_description(product) %>
           </p>
+
+
+          <div class="moto-tag-container">
+            <i class="fa fa-motorcycle"></i>
+            <% product.categories.each do |category| %>
+              <div class="moto-tag">
+                <%= category.name %>
+              </div>
+            <% end %>
+          </div>
+
           <div class="text-secondary float-right">
             <i class="fa fa-eye"></i> <%= product.impressions_count %>
           </div>

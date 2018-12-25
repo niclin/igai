@@ -4,7 +4,8 @@
     <div class="mt-4 col-md-3 col-lg-4">
       <div class="card">
         <div class="card-header">
-          <h5><%= product.title %></h5>
+          <%= render_product_type_badge(product) %>
+          <h5 class="d-inline-block"><%= product.title %></h5>
         </div>
 
         <% if product.attachments.present? %>

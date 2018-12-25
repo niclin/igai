@@ -34,7 +34,8 @@
           商品資訊
         </div>
         <div class="card-body">
-          <h1><%= @product.title %></h1>
+          <%= render_product_type_badge(@product) %>
+          <h2 class="d-inline-block"><%= @product.title %></h2>
 
           <hr>
 

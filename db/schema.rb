@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2018_12_25_162144) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "impressions_count", default: 0
-    t.string "type"
+    t.string "product_type"
   end
 
   create_table "users", force: :cascade do |t|

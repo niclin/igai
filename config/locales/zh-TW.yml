@@ -4,6 +4,7 @@ zh-TW:
     attributes:
       product:
         title: 標題
+        product_type: 種類
         description: 敘述
         price: 價錢
         attachments: 附件

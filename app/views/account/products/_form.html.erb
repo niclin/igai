@@ -44,7 +44,11 @@
 <script>
 $(document).ready(function() {
   $('#js-catrgories-multiple-select').select2({
-    theme: "bootstrap"
+    language: "zh-TW",
+    theme: "bootstrap",
+    placeholder: "選擇適用車系...",
+    minimumSelectionLength: 1,
+    maximumSelectionLength: 5
   });
 });
 

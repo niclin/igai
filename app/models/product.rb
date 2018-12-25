@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  TYPE = %i(sell buy exchange).freeze
+  TYPE = %w(sell buy exchange).freeze
   ATTACHMENT_LIMIT = 5
 
   is_impressionable counter_cache: true, unique: true
@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :price, presence: true
-  validates :product_type, presence: true
+  validates :product_type, presence: true, inclusion: { in: TYPE }
   validates :attachments, length: { minimum: 1, message: "請至少上傳一張照片" }
 
   has_many :attachments, class_name: "ProductAttachment", dependent: :destroy

@@ -36,7 +36,14 @@
         <div class="card-body">
           <%= render_product_type_badge(@product) %>
           <h2 class="d-inline-block"><%= @product.title %></h2>
-
+          <div class="moto-category-container">
+            <i class="fa fa-motorcycle"></i>
+            <% @product.categories.each do |category| %>
+              <div class="moto-category">
+                <%= category.name %>
+              </div>
+            <% end %>
+          </div>
           <hr>
 
           <ul>

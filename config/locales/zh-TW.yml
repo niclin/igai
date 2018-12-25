@@ -14,6 +14,7 @@ zh-TW:
         description: 敘述
         price: 價錢
         attachments: 附件
+        categories: 適用車系
     errors:
       messages:
         record_invalid: "校驗失敗: %{errors}"

@@ -9,9 +9,12 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :product_type, presence: true, inclusion: { in: TYPE }
   validates :attachments, length: { minimum: 1, message: "請至少上傳一張照片" }
+  validates :categories, length: { maximum: 5, message: "最多只可以選擇 5 種車系" }
 
   has_many :attachments, class_name: "ProductAttachment", dependent: :destroy
   has_many :chat_rooms
+  has_many :categorizations
+  has_many :categories, through: :categorizations
 
   belongs_to :user
 

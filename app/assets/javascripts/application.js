@@ -18,3 +18,4 @@
 //= require nested_form_fields
 //= require autosize.min
 //= require dropzone
+//= require select2

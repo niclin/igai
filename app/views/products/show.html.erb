@@ -23,6 +23,16 @@
   </div>
 
   <div class="col-md-6">
+    <h1><%= @product.title %></h1>
+    <li>
+      <span class="text-muted">刊登日期： <%= @product.created_at %>
+    </li>
+    <li>
+      <span class="text-muted">點閱次數：<%= @product.impressions_count %>
+    </li>
+    <li>
+      <span class="text-muted">售價：<%= @product.price %> 元</span>
+    </li>
     <div class="product-description card">
       <div class="card-header">
         商品描述

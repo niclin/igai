@@ -1,69 +1,68 @@
 <div class="container">
-<div class="mt-4 mb-4 row">
-  <div class="col-md-6 mb-4">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <% if @product.attachments.present? %>
-          <% @product.attachments.each_with_index do |attachment, index| %>
-            <div class="carousel-item <%= index == 0 ? "active" : "" %>">
-              <%= image_tag(attachment.image.medium.url, class: "d-block w-100 img-responsive")%>
-            </div>
+  <div class="mt-4 mb-4 row">
+    <div class="col-md-6 mb-4">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% if @product.attachments.present? %>
+            <% @product.attachments.each_with_index do |attachment, index| %>
+              <div class="carousel-item <%= index == 0 ? "active" : "" %>">
+                <%= image_tag(attachment.image.medium.url, class: "d-block w-100 img-responsive")%>
+              </div>
+            <% end %>
           <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="product-description card mb-3">
+        <div class="card-header">
+          商品資訊
+        </div>
+        <div class="card-body">
+          <h1><%= @product.title %></h1>
+
+          <hr>
+
+          <ul>
+            <li>
+              <span class="text-muted">刊登日期： <%= @product.created_at.to_s(:ymd) %></span>
+            </li>
+            <li>
+              <span class="text-muted">點閱次數：<%= @product.impressions_count %> 次</span>
+            </li>
+            <li>
+              <span class="text-muted">賣家資訊: <%=@product.user.name %></span>
+            </li>
+          </ul>
+
+          <hr>
+
+          <blockquote class="blockquote mb-0">
+            <%= sanitize @product.description %>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="pull-right">
+        <p class="lead">售價：<%= @product.price %> 元</p>
+        <% if !@product.owner?(current_user) %>
+            <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
         <% end %>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+
     </div>
-  </div>
-
-  <div class="col-md-6">
-
-    <div class="product-description card mb-3">
-      <div class="card-header">
-        商品資訊
-      </div>
-      <div class="card-body">
-        <h1><%= @product.title %></h1>
-
-        <hr>
-
-        <ul>
-          <li>
-            <span class="text-muted">刊登日期： <%= @product.created_at.to_s(:ymd) %></span>
-          </li>
-          <li>
-            <span class="text-muted">點閱次數：<%= @product.impressions_count %> 次</span>
-          </li>
-          <li>
-            <span class="text-muted">賣家資訊: <%=@product.user.name %></span>
-          </li>
-        </ul>
-
-        <hr>
-
-        <blockquote class="blockquote mb-0">
-          <%= sanitize @product.description %>
-        </blockquote>
-      </div>
-    </div>
-
-    <div class="pull-right">
-    <p class="lead">售價：<%= @product.price %> 元</p>
-
-  <% if !@product.owner?(current_user) %>
-      <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
-    </div>
-  <% end %>
   </div>
 </div>
-
-
 
 <script>
   $('.carousel').carousel({

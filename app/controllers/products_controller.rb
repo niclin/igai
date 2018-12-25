@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   impressionist actions: [:show]
 
   def index
-    @products = Product.all.paginate(page: params[:page], per_page: 10)
+    @products = Product.all.paginate(page: params[:page], per_page: 12)
 
     set_meta_tags title: "商品一覽"
   end

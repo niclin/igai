@@ -1,6 +1,6 @@
 class Account::ProductsController < Account::BaseController
   def index
-    @products = current_user.products.all.paginate(page: params[:page], per_page: 10)
+    @products = current_user.products.includes(:attachments).all.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -43,6 +43,6 @@ class Account::ProductsController < Account::BaseController
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, attachments_attributes: [:id, :image, :_destroy])
+    params.require(:product).permit(:title, :type, :description, :price, attachments_attributes: [:id, :image, :_destroy])
   end
 end

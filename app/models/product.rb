@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
+  TYPE = %w(buy sell exchange).freeze
   ATTACHMENT_LIMIT = 5
+
   is_impressionable counter_cache: true, unique: true
 
   validates :title, presence: true

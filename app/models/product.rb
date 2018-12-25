@@ -6,7 +6,7 @@ class Product < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, if: -> { product_type == "exchange" }
   validates :product_type, presence: true, inclusion: { in: TYPE }
   validates :attachments, length: { minimum: 1, message: "請至少上傳一張照片" }
   validates :categories, length: { minimum: 1, maximum: 5, message: "請選擇至少 1 種以上 5 種 以下的車系" }

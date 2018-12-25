@@ -47,9 +47,7 @@
 
           <hr>
 
-          <blockquote class="blockquote mb-0">
-            <%= sanitize @product.description %>
-          </blockquote>
+          <%= simple_format @product.description %>
         </div>
       </div>
 

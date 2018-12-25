@@ -1,9 +1,9 @@
 module ProductsHelper
   def render_product_description(product)
-    truncate(strip_tags(product.description), length: 50)
+    truncate(product.description, length: 30)
   end
 
   def render_product_price(product)
-    "價格：#{product.price} NT"
+    "價格：#{product.price} 元"
   end
 end

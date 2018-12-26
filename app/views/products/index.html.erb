@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-header">
           <%= render_product_type_badge(product) %>
-          <h5 class="d-inline-block"><%= render_product_title(product) %></h5>
+          <h5 class="d-inline-block"><%= link_to render_product_title(product), product_path(product) %></h5>
         </div>
 
         <% if product.attachments.present? %>

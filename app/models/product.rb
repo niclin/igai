@@ -6,9 +6,9 @@ class Product < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 70 }
   validates :description, presence: true, length: { maximum: 500 }
-  validates :price, presence: true, if: -> { product_type == "exchange" }
+  validates :price, presence: true, if: -> { product_type != "exchange" }
   validates :product_type, presence: true, inclusion: { in: TYPE }
-  validates :attachments, length: { minimum: 1, message: "請至少上傳一張照片" }
+  validates :attachments, length: { minimum: 1, message: "請至少上傳一張照片" }, if: -> { product_type != "buy" }
   validates :categories, length: { minimum: 1, maximum: 5, message: "請選擇至少 1 種以上 5 種 以下的車系" }
 
   has_many :attachments, class_name: "ProductAttachment", dependent: :destroy

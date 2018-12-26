@@ -14,7 +14,7 @@ module ProductsHelper
   def render_product_type_badge(product)
     case product.product_type
     when "sell"
-      tag.span class: "badge badge-primary" do
+      tag.span class: "badge badge-success" do
         "出售"
       end
     when "buy"

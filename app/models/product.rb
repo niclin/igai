@@ -20,6 +20,9 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :attachments, allow_destroy: true, reject_if: :all_blank
 
+  scope :published, -> { where(is_hidden: false) }
+  scope :hidden, -> { where(is_hidden: true) }
+
   def owner?(user)
     self.user == user
   end

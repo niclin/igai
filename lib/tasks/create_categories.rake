@@ -25,5 +25,11 @@ namespace :create_categories do
     sanyang_moto_name_lists.each do |moto_name|
       Category.find_or_create_by(name: moto_name, category_group: CategoryGroup.find_by(name: "SANYANG"))
     end
+
+    gogoro_moto_name_lists = ["gogoro 1", "gogoro 2"]
+
+    gogoro_moto_name_lists.each do |moto_name|
+      Category.find_or_create_by(name: moto_name, category_group: CategoryGroup.find_by(name: "GOGORO"))
+    end
   end
 end

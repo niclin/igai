@@ -31,6 +31,12 @@ Install node packages
 $ yarn install
 ```
 
+Seed task
+
+```
+$ rake create_categories:run
+```
+
 Start server
 
 ```

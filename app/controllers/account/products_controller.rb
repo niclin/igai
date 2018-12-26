@@ -46,6 +46,30 @@ class Account::ProductsController < Account::BaseController
     end
   end
 
+  def update_states
+    @product = current_user.products.find(params[:id])
+
+    status = params[:status]
+
+    success =
+     case status
+     when "online"
+       @product.go_live!
+     when "offline"
+       @product.go_offline!
+     when "sold"
+       @product.sold_out!
+     else
+       false
+     end
+
+    if success
+      redirect_to account_products_path, notice: "#{@product.title} 更新成功。"
+    else
+      redirect_back(fallback_location: root_path, alert: "#{@product.title} 更新狀態失敗")
+    end
+  end
+
   private
 
   def product_params

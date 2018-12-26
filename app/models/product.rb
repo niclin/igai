@@ -33,7 +33,7 @@ class Product < ApplicationRecord
       transitions from: [:offline, :sold], to: :online
     end
 
-    event :go_offlife do
+    event :go_offline do
       transitions from: :online, to: :offline
     end
 

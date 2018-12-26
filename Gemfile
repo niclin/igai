@@ -68,6 +68,8 @@ gem "select2-rails"
 
 gem "aasm"
 
+gem 'popper_js', '~> 1.11', '>= 1.11.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

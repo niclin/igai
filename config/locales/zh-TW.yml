@@ -15,6 +15,10 @@ zh-TW:
         price: 價錢
         attachments: 附件
         categories: 適用車系
+        aasm_state:
+          online: 在線
+          offline: 下線
+          sold: 售出
     errors:
       messages:
         record_invalid: "校驗失敗: %{errors}"

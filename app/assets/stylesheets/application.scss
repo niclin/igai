@@ -66,7 +66,10 @@
     width: 120px;
     position: relative;
     display: inline-block;
-    margin: 16px;
+    margin-left: 0px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    margin-top: 10px;
     cursor: pointer;
 
     &--plus-symbol {
@@ -95,6 +98,15 @@
     font-size: 14px;
     line-height: 20px;
     padding: 1px 3px 1px 3px;
+  }
+}
+
+#dropzonePreview {
+  .dz-preview {
+    margin-left: 0px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    margin-top: 10px;
   }
 }
 

@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  include AASM
+
   TYPE = %w(sell buy exchange).freeze
   ATTACHMENT_LIMIT = 5
 
@@ -22,6 +24,23 @@ class Product < ApplicationRecord
 
   scope :published, -> { where(is_hidden: false) }
   scope :hidden, -> { where(is_hidden: true) }
+
+  aasm do
+    state :online, initial: true
+    state :offline, :sold
+
+    event :go_live do
+      transitions from: [:offline, :sold], to: :online
+    end
+
+    event :go_offlife do
+      transitions from: :online, to: :offline
+    end
+
+    event :sold_out do
+      transitions from: [:online, :offline], to: :sold
+    end
+  end
 
   def owner?(user)
     self.user == user

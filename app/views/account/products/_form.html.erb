@@ -12,7 +12,7 @@
   <%= f.input :product_type, collection: Product::TYPE.map(&:to_sym), include_blank: false %>
   <%= f.input :title %>
 
-  <%= f.input :category_ids, label: "適用車系", collection: Category.all, input_html: { id: "js-catrgories-multiple-select", multiple: true } %>
+  <%= f.input :category_ids, label: "適用車系", collection: render_cached_grouped_catrgory_collection, as: :grouped_select, group_method: :last, input_html: { id: "js-catrgories-multiple-select", multiple: true } %>
 
   <small>快速選取：<a href="javascript:undefined;" id="1to3cygnus">1-3代勁戰</a></small>
   <%= f.input :description, as: :text %>

@@ -13,6 +13,6 @@ zh-TW:
     options:
       product:
         product_type:
-          sell: "賣"
-          buy: "買"
+          sell: "出售"
+          buy: "收購"
           exchange: "交流"

@@ -27,4 +27,10 @@ module ProductsHelper
       end
     end
   end
+
+  def render_cached_grouped_catrgory_collection
+    Rails.cache.fetch("grouped-category-collection", expires_in: 1.day) do
+      CategoryGroup.all.includes(:categories).map { |cg| [cg.name, cg.categories.pluck(:name, :id)] }
+    end
+  end
 end

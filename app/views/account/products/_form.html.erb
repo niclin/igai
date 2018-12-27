@@ -8,21 +8,15 @@
       <% end %>
     </ul>
   </div>
-<!-- Target -->
-<textarea id="bar">Mussum ipsum cacilds...</textarea>
 
-<!-- Trigger -->
-<a href="#" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#bar">
-    Copy to clipboard
-</a>
   <%= f.input :product_type, collection: Product::TYPE.map(&:to_sym), include_blank: false %>
-  <%= f.input :title %>
+  <%= f.input :title, placeholder: "輸入標題，例如：9成新 MSP 避震器、近全新金色 XXX 鍛造框" %>
 
   <%= f.input :category_ids, label: "適用車系", collection: render_cached_grouped_catrgory_collection, as: :grouped_select, group_method: :last, input_html: { id: "js-catrgories-multiple-select", multiple: true } %>
 
   <small>快速選取：<a href="javascript:undefined;" id="1to3cygnus">1-3代勁戰</a></small>
-  <%= f.input :description, as: :text %>
-  <%= f.input :price %>
+  <%= f.input :description, as: :text, placeholder: "輸入商品描述，越清楚越容易被搜尋到！" %>
+  <%= f.input :price, placeholder: "請輸入價錢" %>
 
   <div class="form-group required product_attachments form-group-invalid">
   <%= f.simple_fields_for :attachments do |attachment| %>

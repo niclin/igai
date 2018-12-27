@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="mt-4 mb-4 card">
+      <div class="card-body">
+        <h5 class="card-title"><%= image_tag(@user.avatar.url.tiny, class: "rounded") if @user.avatar.present? %><%= @user.name %></h5>
+      </div>
+    </div>
+
+    <div class="mt-4 mb-4 card">
+      <div class="card-body">
+        <h5 class="card-title">刊登的「出售」記錄</h5>
+        <%= render partial: "product_records", locals: { products: @sell_products } %>
+      </div>
+    </div>
+
+    <div class="mt-4 mb-4 card">
+      <div class="card-body">
+        <h5 class="card-title">刊登的「收購」記錄</h5>
+        <%= render partial: "product_records", locals: { products: @buy_products } %>
+      </div>
+    </div>
+
+    <div class="mt-4 mb-4 card">
+      <div class="card-body">
+        <h5 class="card-title">刊登的「交流」記錄</h5>
+        <%= render partial: "product_records", locals: { products: @exchange_products } %>
+      </div>
+    </div>
+  </div>
+</div>

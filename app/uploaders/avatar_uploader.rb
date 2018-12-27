@@ -13,13 +13,17 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_fit: [800, 800]
-
-  version :thumb do
-   process resize_to_fill: [200,200]
+  version :tiny do
+    process resize_to_fill: [30, 30]
   end
 
   version :medium do
-   process resize_to_fill: [400,400]
+    process resize_to_fill: [120, 120]
+  end
+
+  protected
+
+  def extension_whitelist
+    %w(jpg jpeg png)
   end
 end

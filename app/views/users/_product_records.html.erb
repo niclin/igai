@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">刊登日期</th>
+      <th scope="col">標題</th>
+      <th scope="col">價錢</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.each do |product| %>
+      <tr>
+        <td><%= product.created_at.to_s(:ymd) %></td>
+        <td><%= link_to(product.title, product_path(product)) %></td>
+        <td><%= product.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

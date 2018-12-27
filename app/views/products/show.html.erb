@@ -53,7 +53,7 @@
             <span class="text-muted">點閱次數：<%= @product.impressions_count %> 次</span>
           </li>
           <li>
-            <span class="text-muted">賣家資訊: <%=@product.user.name %></span>
+            <span class="text-muted">賣家資訊: <%= link_to(@product.user.name, user_path(@product.user)) %></span>
           </li>
         </ul>
 

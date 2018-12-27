@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   mount ActionCable.server => '/cable'
 
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :users, only: [:show]
 
   root "home#index"
 end

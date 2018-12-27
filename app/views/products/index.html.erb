@@ -1,48 +1,46 @@
-<div class="container">
-  <div class="row">
-  <% @products.each do |product| %>
-    <div class="mt-4 col-md-4 col-lg-4">
-      <div class="card">
-        <div class="card-header">
-          <%= render_product_type_badge(product) %>
-          <h5 class="d-inline-block"><%= link_to render_product_title(product), product_path(product) %></h5>
-        </div>
+<div class="row">
+<% @products.each do |product| %>
+  <div class="mt-4 col-md-4 col-lg-4">
+    <div class="card">
+      <div class="card-header">
+        <%= render_product_type_badge(product) %>
+        <h5 class="d-inline-block"><%= link_to render_product_title(product), product_path(product) %></h5>
+      </div>
 
-        <% if product.attachments.present? %>
-          <%= link_to product_path(product) do %>
-            <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
-          <% end %>
+      <% if product.attachments.present? %>
+        <%= link_to product_path(product) do %>
+          <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
         <% end %>
-        <div class="card-body">
-          <p class="card-text">
-            <%= render_product_description(product) %>
-          </p>
+      <% end %>
+      <div class="card-body">
+        <p class="card-text">
+          <%= render_product_description(product) %>
+        </p>
 
 
-          <div class="moto-category-container">
-            <i class="fa fa-motorcycle"></i>
-            <% product.categories.each do |category| %>
-              <div class="moto-category">
-                <%= category.name %>
-              </div>
-            <% end %>
-          </div>
-
-          <div class="text-secondary float-right">
-            <i class="fa fa-eye"></i> <%= product.impressions_count %>
-          </div>
-
-          <span>
-            <%= render_product_price(product) %>
-          </span>
+        <div class="moto-category-container">
+          <i class="fa fa-motorcycle"></i>
+          <% product.categories.each do |category| %>
+            <div class="moto-category">
+              <%= category.name %>
+            </div>
+          <% end %>
         </div>
+
+        <div class="text-secondary float-right">
+          <i class="fa fa-eye"></i> <%= product.impressions_count %>
+        </div>
+
+        <span>
+          <%= render_product_price(product) %>
+        </span>
       </div>
     </div>
-  <% end %>
-
   </div>
+<% end %>
 
-  <div class="row justify-content-center mt-4">
-    <%= will_paginate @products %>
-  </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+  <%= will_paginate @products %>
 </div>

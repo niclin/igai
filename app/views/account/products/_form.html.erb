@@ -8,7 +8,13 @@
       <% end %>
     </ul>
   </div>
+<!-- Target -->
+<textarea id="bar">Mussum ipsum cacilds...</textarea>
 
+<!-- Trigger -->
+<a href="#" class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#bar">
+    Copy to clipboard
+</a>
   <%= f.input :product_type, collection: Product::TYPE.map(&:to_sym), include_blank: false %>
   <%= f.input :title %>
 
@@ -44,6 +50,25 @@
 <% end %>
 
 <script>
+
+$('.clipboard-btn').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip('.clipboard-btn', message) {
+  $('.clipboard-btn').tooltip('show')
+    .attr('data-original-title', message)
+    .tooltip('show');
+}
+
+function hideTooltip('.clipboard-btn') {
+  setTimeout(function() {
+    $('.clipboard-btn').tooltip('hide');
+  }, 1000);
+}
+var clipboard = new Clipboard('.clipboard-btn');
+
 $(document).ready(function() {
   $('#js-catrgories-multiple-select').select2({
     language: "zh-TW",

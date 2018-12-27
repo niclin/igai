@@ -70,6 +70,8 @@ gem "aasm"
 
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
 
+gem 'clipboard-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -77,6 +79,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'koala' # 可以將錯誤的 session 刪掉避免註冊失敗
+
+gem 'devise-i18n'
+gem 'devise-bootstrap-views', '~> 1.0'
 
 group :development, :test do
   gem "pry-rails"

@@ -34,5 +34,7 @@ module Igai
     config.i18n.available_locales = [:"zh-TW", :zh]
     config.i18n.default_locale = "zh-TW"
     config.time_zone = "Taipei"
+
+    config.action_mailer.deliver_later_queue_name = "mailer"
   end
 end

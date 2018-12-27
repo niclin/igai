@@ -85,6 +85,10 @@ class User < ApplicationRecord
     @graph.delete_connections(auth.uid, "permissions")
   end
 
+  def admin?
+    email == "niclin0226@gmail.com"
+  end
+
   private
 
   def random_user_name

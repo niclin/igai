@@ -67,6 +67,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "igai_#{Rails.env}"
 
+  config.active_job.queue_adapter = :sidekiq
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -97,4 +99,15 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.asset_host = 'https://igai.info'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mailgun.org',
+    port:                 587,
+    domain:               Rails.application.credentials.dig(:mailgun, :domain),
+    user_name:            Rails.application.credentials.dig(:mailgun, :login),
+    password:             Rails.application.credentials.dig(:mailgun, :password),
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
 end

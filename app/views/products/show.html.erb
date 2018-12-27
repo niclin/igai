@@ -69,7 +69,7 @@
       <button type="button" id="js-btn-copy" class="btn btn-light" data-clipboard-text="<%= request.original_url %>">複製網址</button>
 
       <% if !@product.owner?(current_user) %>
-        <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
+        <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success" %>
       <% end %>
     </div>
 

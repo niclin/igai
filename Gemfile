@@ -84,6 +84,8 @@ gem 'devise-i18n'
 
 gem 'friendly_id', '~> 5.2.4'
 
+gem 'devise-bootstrap-views', '~> 1.0'
+
 group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'

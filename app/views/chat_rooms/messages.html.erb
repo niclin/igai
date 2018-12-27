@@ -1,5 +1,41 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="mt-4 mb-4 col-md-6">
+
+    <div class="product-description card mb-3">
+      <div class="card-header">
+        商品資訊
+      </div>
+      <div class="card-body">
+        <%= render_product_type_badge(@product) %>
+        <h2 class="d-inline-block"><%= @product.title %></h2>
+        <div class="moto-category-container">
+          <i class="fa fa-motorcycle"></i>
+          <% @product.categories.each do |category| %>
+            <div class="moto-category">
+              <%= category.name %>
+            </div>
+          <% end %>
+        </div>
+        <hr>
+
+        <ul>
+          <li>
+            <span class="text-muted">刊登日期： <%= @product.created_at.to_s(:ymd) %></span>
+          </li>
+          <li>
+            <span class="text-muted">點閱次數：<%= @product.impressions_count %> 次</span>
+          </li>
+          <li>
+            <span class="text-muted">賣家資訊: <%= link_to(@product.user.name, user_path(@product.user)) %></span>
+          </li>
+        </ul>
+
+        <hr>
+
+        <%= simple_format @product.description %>
+      </div>
+    </div>
+
     <div class="carousel-warpper">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner carousel-inner--black">
@@ -21,19 +57,9 @@
       </a>
     </div>
     </div>
-    <div class="product-description card">
-      <div class="card-header">
-        商品描述
-      </div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <%= sanitize @product.description %>
-        </blockquote>
-      </div>
-    </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="mt-4 mb-4 col-md-6">
     <%= react_component("Chat", { current_user: current_user, product: @chat_room.product, chat_room: @chat_room }) %>
     <audio src="/sounds/inquisitiveness.mp3" autostart="false" width="0" height="0" id="msgSound" />
   </div>

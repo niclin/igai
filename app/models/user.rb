@@ -14,12 +14,12 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   validates :name, presence: true, length: { minimum: 5 }, if: :name_changed?, on: :update
-  validates :user_name, length: { in: 2..63 },
+  validates :name, length: { in: 2..63 },
                         exclusion: { in: RESERVED_USERNAMES },
                         format: { with: USERNAME_PATTERN },
                         uniqueness: { case_sensitive: false }, on: :create
 
-  validates :user_name, length: { in: 2..63 },
+  validates :name, length: { in: 2..63 },
                         exclusion: { in: RESERVED_USERNAMES },
                         uniqueness: { case_sensitive: false }, format: { with: USERNAME_PATTERN }, on: :update
   # create 與 update 要分開 validation, 不然剛開始沒有 user_name ，註冊會被擋住

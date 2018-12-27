@@ -1,4 +1,5 @@
 class ChatRoomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_chat_room, only: [:messages]
   before_action :require_sender_or_recevier!, only: [:messages]
 

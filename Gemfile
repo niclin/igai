@@ -96,6 +96,7 @@ group :development, :test do
   gem "capistrano-rvm"
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
+  gem 'capistrano-sidekiq'
 end
 
 group :development do

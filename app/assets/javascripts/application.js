@@ -21,3 +21,4 @@
 //= require dropzone
 //= require select2
 //= require select2_locale_zh-TW
+//= require clipboard.min

@@ -65,7 +65,9 @@
 
     <div class="pull-right">
       <p class="lead">售價：<%= @product.price %> 元</p>
-        <button type="button" class="btn btn-light btn-copy js-tooltip js-copy" data-toggle="tooltip" data-placement="bottom" data-copy="<%= request.original_url %>" title="複製到剪貼簿">複製網址</button>
+
+      <button type="button" id="js-btn-copy" class="btn btn-light" data-clipboard-text="<%= request.original_url %>">複製網址</button>
+
       <% if !@product.owner?(current_user) %>
         <%= link_to "馬上私訊", find_or_create_chat_room_product_path(@product), class: "btn btn-success btn-lg" %>
       <% end %>
@@ -75,54 +77,41 @@
 </div>
 
 <script>
-// COPY TO CLIPBOARD
-// Attempts to use .execCommand('copy') on a created text field
-// Falls back to a selectable alert if not supported
-// Attempts to display status in Bootstrap tooltip
-// ------------------------------------------------------------------------------
 
-function copyToClipboard(text, el) {
-  var copyTest = document.queryCommandSupported('copy');
-  var elOriginalText = el.attr('data-original-title');
+// Tooltip
 
-  if (copyTest === true) {
-    var copyTextArea = document.createElement("textarea");
-    copyTextArea.value = text;
-    document.body.appendChild(copyTextArea);
-    copyTextArea.select();
-    try {
-      var successful = document.execCommand('copy');
-      var msg = successful ? '成功!' : 'Whoops, not copied!';
-      el.attr('data-original-title', msg).tooltip('show');
-    } catch (err) {
-      console.log('Oops, unable to copy');
-    }
-    document.body.removeChild(copyTextArea);
-    el.attr('data-original-title', elOriginalText);
-  } else {
-    // Fallback if browser doesn't support .execCommand('copy')
-    window.prompt("Copy to clipboard: Ctrl+C or Command+C, Enter", text);
-  }
+$('#js-btn-copy').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip(message) {
+  $('#js-btn-copy').tooltip('hide')
+    .attr('data-original-title', message)
+    .tooltip('show');
 }
 
-$(document).ready(function() {
-  // Initialize
-  // ---------------------------------------------------------------------
+function hideTooltip() {
+  setTimeout(function() {
+    $('#js-btn-copy').tooltip('hide');
+  }, 1000);
+}
 
-  // Tooltips
-  // Requires Bootstrap 3 for functionality
-  $('.js-tooltip').tooltip();
+// Clipboard
 
-  // Copy to clipboard
-  // Grab any text in the attribute 'data-copy' and pass it to the
-  // copy function
-  $('.js-copy').click(function() {
-    var text = $(this).attr('data-copy');
-    var el = $(this);
-    copyToClipboard(text, el);
-  });
+var clipboard = new ClipboardJS('#js-btn-copy');
+
+clipboard.on('success', function(e) {
+  setTooltip('成功!');
+  hideTooltip();
 });
+
+clipboard.on('error', function(e) {
+  setTooltip('失敗!');
+  hideTooltip();
+});
+
   $('.carousel').carousel({
-      interval: false
+    interval: false
   })
 </script>

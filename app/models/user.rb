@@ -5,6 +5,7 @@ class User < ApplicationRecord
   friendly_id :name, use: :slugged
 
   USERNAME_PATTERN = /\A[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*\z/
+  RESERVED_USERNAMES = %w(api blog mail staging www admin admins tech administrator administrators manager managers support supports).freeze
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,6 +14,15 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   validates :name, presence: true, length: { minimum: 5 }, if: :name_changed?, on: :update
+  validates :user_name, length: { in: 2..63 },
+                        exclusion: { in: RESERVED_USERNAMES },
+                        format: { with: USERNAME_PATTERN },
+                        uniqueness: { case_sensitive: false }, on: :create
+
+  validates :user_name, length: { in: 2..63 },
+                        exclusion: { in: RESERVED_USERNAMES },
+                        uniqueness: { case_sensitive: false }, format: { with: USERNAME_PATTERN }, on: :update
+  # create 與 update 要分開 validation, 不然剛開始沒有 user_name ，註冊會被擋住
 
   before_validation :create_user_name
 

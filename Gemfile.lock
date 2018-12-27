@@ -135,6 +135,9 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-async (1.0.0)
+      activejob (>= 5.0)
+      devise (>= 4.0)
     devise-bootstrap-views (1.1.0)
     devise-i18n (1.7.0)
       devise (>= 4.5)
@@ -583,6 +586,7 @@ DEPENDENCIES
   clipboard-rails
   coffee-rails (~> 4.2)
   devise
+  devise-async
   devise-bootstrap-views (~> 1.0)
   devise-i18n
   fog

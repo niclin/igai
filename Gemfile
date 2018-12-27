@@ -90,6 +90,8 @@ gem "sidekiq"
 gem "sidekiq-cron"
 gem "sidekiq-unique-jobs"
 
+gem "devise-async"
+
 group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'

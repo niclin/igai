@@ -1,0 +1,4 @@
+notify_unread_messages:
+  cron: "0 21 * * *"
+  class: "NotifyUnreadMessages"
+  queue: default

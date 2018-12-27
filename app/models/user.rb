@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   USERNAME_PATTERN = /\A[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*\z/
 
   # Include default devise modules. Others available are:

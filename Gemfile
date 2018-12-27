@@ -81,7 +81,8 @@ gem 'omniauth-google-oauth2'
 gem 'koala' # 可以將錯誤的 session 刪掉避免註冊失敗
 
 gem 'devise-i18n'
-gem 'devise-bootstrap-views', '~> 1.0'
+
+gem 'friendly_id', '~> 5.2.4'
 
 group :development, :test do
   gem "pry-rails"

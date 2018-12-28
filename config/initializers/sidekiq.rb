@@ -1,6 +1,7 @@
 require 'sidekiq'
 require 'sidekiq-status'
 require 'sidekiq-status/web'
+require 'sidekiq/cron/web'
 
 Sidekiq.configure_client do |config|
   # accepts :expiration (optional)

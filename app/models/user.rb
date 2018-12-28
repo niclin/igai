@@ -5,7 +5,8 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  USERNAME_PATTERN = /\A[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*\z/
+  # 只允許中文、英文、數字和底線
+  USERNAME_PATTERN = /\A[\u4e00-\u9fa5_a-zA-Z0-9]*\z/
   RESERVED_USERNAMES = %w(api blog mail staging www admin admins tech administrator administrators manager managers support supports).freeze
 
   # Include default devise modules. Others available are:
@@ -15,7 +16,7 @@ class User < ApplicationRecord
          :omniauthable, :confirmable, :async,
          omniauth_providers: [:facebook, :google_oauth2]
 
-  validates :name, presence: true, length: { minimum: 5 }, if: :name_changed?, on: :update
+  validates :name, presence: true, length: { minimum: 2 }, if: :name_changed?, on: :update
   validates :name, length: { in: 2..63 },
                         exclusion: { in: RESERVED_USERNAMES },
                         format: { with: USERNAME_PATTERN },
@@ -89,6 +90,10 @@ class User < ApplicationRecord
 
   def admin?
     email == "niclin0226@gmail.com"
+  end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s
   end
 
   private

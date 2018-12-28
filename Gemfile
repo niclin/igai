@@ -93,6 +93,8 @@ gem 'sidekiq-status'
 
 gem "devise-async"
 
+gem "babosa"
+
 group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'

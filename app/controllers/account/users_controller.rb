@@ -6,7 +6,7 @@ class Account::UsersController < Account::BaseController
   def update
     @user = current_user
 
-    if @user.save(user_params)
+    if @user.update(user_params)
       redirect_to user_path(@user), notice: "修改成功!"
     else
       render :edit

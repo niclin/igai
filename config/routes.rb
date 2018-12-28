@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", confirmations: 'confirmations' }
+
+  devise_for :users, controllers: {
+    omniauth_callbacks: "devise/users/omniauth_callbacks",
+    confirmations: 'devise/users/confirmations'
+  }
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
         patch :update_states
       end
     end
+
+    resource :user, only: %i(edit update), path: ""
   end
 
   resources :products, only: [:index, :show] do

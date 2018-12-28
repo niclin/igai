@@ -1,0 +1,10 @@
+<%= simple_form_for [:account, @user] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :avatar %>
+  <%= f.input :phone %>
+  <%= f.input :facebook_url %>
+  <%= f.input :line_url %>
+  <%= f.input :shopee_url %>
+
+  <%= f.submit %>
+<% end %>

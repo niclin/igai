@@ -12,7 +12,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :async, omniauth_providers: [:facebook, :google_oauth2]
+         :omniauthable, :confirmable, :async,
+         omniauth_providers: [:facebook, :google_oauth2]
 
   validates :name, presence: true, length: { minimum: 5 }, if: :name_changed?, on: :update
   validates :name, length: { in: 2..63 },

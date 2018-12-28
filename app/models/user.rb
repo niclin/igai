@@ -89,7 +89,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    email == "niclin0226@gmail.com"
+    ["niclin0226@gmail.com", "bboyceo@hotmail.com"].include?(email)
   end
 
   def normalize_friendly_id(input)

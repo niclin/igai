@@ -1,7 +1,7 @@
 <div class="row">
 <% @products.each do |product| %>
   <div class="mt-4 col-md-4 col-lg-4">
-    <div class="card">
+    <div class="card <%= product.vip? ? "vip-border" : "" %>">
       <div class="card-header">
         <%= render_product_type_badge(product) %>
         <h5 class="d-inline-block"><%= link_to render_product_title(product), product_path(product) %></h5>

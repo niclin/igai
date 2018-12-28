@@ -24,6 +24,7 @@ class Product < ApplicationRecord
 
   scope :published, -> { where(is_hidden: false) }
   scope :hidden, -> { where(is_hidden: true) }
+  scope :recent, -> { order(id: :desc) }
 
   aasm do
     state :online, initial: true
@@ -44,6 +45,10 @@ class Product < ApplicationRecord
 
   def owner?(user)
     self.user == user
+  end
+
+  def vip?
+    user.admin?
   end
 
   def remainder_attachment_quota

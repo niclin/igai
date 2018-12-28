@@ -117,6 +117,8 @@ GEM
       mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     clipboard-rails (1.7.1)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -391,6 +393,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    numerizer (0.1.1)
     oauth2 (1.4.1)
       faraday (>= 0.8, < 0.16.0)
       jwt (>= 1.0, < 3.0)
@@ -519,6 +522,9 @@ GEM
     sidekiq-cron (1.0.4)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
+    sidekiq-status (1.1.1)
+      chronic_duration
+      sidekiq (>= 3.0)
     sidekiq-unique-jobs (6.0.7)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 4.0, < 6.0)
@@ -617,6 +623,7 @@ DEPENDENCIES
   select2-rails
   sidekiq
   sidekiq-cron
+  sidekiq-status
   sidekiq-unique-jobs
   simple_form
   toastr-rails

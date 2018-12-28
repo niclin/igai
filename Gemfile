@@ -89,6 +89,7 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem "sidekiq"
 gem "sidekiq-cron"
 gem "sidekiq-unique-jobs"
+gem 'sidekiq-status'
 
 gem "devise-async"
 

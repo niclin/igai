@@ -5,6 +5,9 @@ class ChatRoomsController < ApplicationController
 
   def index
     @chat_rooms = current_user.chat_rooms
+      .joins(:messages)
+      .group("chat_rooms.id")
+      .order("max(messages.created_at) DESC")
 
     set_meta_tags title: "訊息收件匣"
   end

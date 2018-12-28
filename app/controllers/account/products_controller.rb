@@ -17,8 +17,8 @@ class Account::ProductsController < Account::BaseController
     respond_to do |format|
       if @product.save
 
-        format.html { redirect_to account_products_path, notice: 'Product was successfully created.' }
-        format.json { render json: { redirectURL: account_products_url }.to_json, status: :created }
+        format.html { redirect_to account_products_path, notice: "成功建立了 #{@product.title} 商品！" }
+        format.json { render json: { redirectURL: product_url(@product) }.to_json, status: :created }
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }

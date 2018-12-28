@@ -40,6 +40,7 @@ class ProductsController < ApplicationController
   end
 
   def require_online!
+    return if @product.owner?(current_user)
     redirect_back(fallback_location: products_path, alert: "該商品已下架") if !@product.online?
   end
 end

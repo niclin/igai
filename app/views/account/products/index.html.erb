@@ -55,6 +55,8 @@
                   <%= link_to "將商品下線", update_states_account_product_path(product, status: "offline"), method: :patch, class: "dropdown-item" if product.may_go_offline? %>
                 </div>
               </div>
+
+              <%= link_to "預覽", product_path(product), class: "btn btn-link" %>
             </td>
           </tr>
           <% end %>

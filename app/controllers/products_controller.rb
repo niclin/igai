@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :find_or_create_chat_room]
   before_action :authenticate_user!, only: [:find_or_create_chat_room]
+  before_action :require_online!, only: [:show, :find_or_create_chat_room]
 
   impressionist actions: [:show]
 
@@ -36,5 +37,9 @@ class ProductsController < ApplicationController
 
   def combine_type_and_title(product)
     "#{I18n.t("general.product_type.#{product.product_type}")} #{product.title}"
+  end
+
+  def require_online!
+    redirect_back(fallback_location: products_path, alert: "該商品已下架") if !@product.online?
   end
 end

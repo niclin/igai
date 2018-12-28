@@ -36,5 +36,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
+
+  get '/about', to: "pages#about"
+
   root "home#index"
 end

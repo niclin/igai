@@ -27,13 +27,13 @@ class Account::ProductsController < Account::BaseController
   end
 
   def edit
-    @product = current_user.products.find(params[:id])
+    @product = current_user.products.friendly.find(params[:id])
 
     set_meta_tags title: "編輯 #{@product.title} 商品"
   end
 
   def update
-    @product = current_user.products.find(params[:id])
+    @product = current_user.products.friendly.find(params[:id])
 
     respond_to do |format|
       if @product.update(product_params)
@@ -47,7 +47,7 @@ class Account::ProductsController < Account::BaseController
   end
 
   def update_states
-    @product = current_user.products.find(params[:id])
+    @product = current_user.products.friendly.find(params[:id])
 
     status = params[:status]
 

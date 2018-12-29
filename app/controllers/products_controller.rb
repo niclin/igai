@@ -12,8 +12,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
-
     set_meta_tags title: combine_type_and_title(@product),
                   description: @product.description,
                   og: {
@@ -32,7 +30,7 @@ class ProductsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def combine_type_and_title(product)

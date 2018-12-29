@@ -4,6 +4,9 @@ class Product < ApplicationRecord
   TYPE = %w(sell buy exchange).freeze
   ATTACHMENT_LIMIT = 5
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   is_impressionable counter_cache: true, unique: true
 
   validates :title, presence: true, length: { maximum: 70 }
@@ -55,5 +58,16 @@ class Product < ApplicationRecord
     return ATTACHMENT_LIMIT if new_record?
 
     ATTACHMENT_LIMIT - attachments.count
+  end
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:id, :title]
+    ]
   end
 end

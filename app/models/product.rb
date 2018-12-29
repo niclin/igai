@@ -66,8 +66,8 @@ class Product < ApplicationRecord
 
   def slug_candidates
     [
-      :title,
-      [:id, :title]
+      [:product_type, :title],
+      [:product_type, :title, :id]
     ]
   end
 end

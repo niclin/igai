@@ -27,6 +27,11 @@ class User < ApplicationRecord
                         uniqueness: { case_sensitive: false }, format: { with: USERNAME_PATTERN }, on: :update
   # create 與 update 要分開 validation, 不然剛開始沒有 user_name ，註冊會被擋住
 
+  validates :phone, format: { with: /\A09([0-9]{8})\z/, message: "必須是台灣的手機號碼格式", allow_blank: true }, if: -> { phone_changed? }, on: :update
+  validates :line_url, format: { with: /\Ahttps\:\/\/line\.me\/.*\z/ix, message: "必須是 https://line.me/ 開頭", allow_blank: true }, if: -> { line_url_changed? }, on: :update
+  validates :facebook_url, format: { with: /\Ahttps\:\/\/www\.facebook\.com\/.*\z/ix, message: "必須是 https://www.facebook.com/ 開頭", allow_blank: true }, if: -> { facebook_url_changed? }, on: :update
+  validates :shopee_url, format: { with: /\Ahttps\:\/\/shopee\.tw\/.*\z/ix, message: "必須是 https://shopee.tw/ 開頭", allow_blank: true}, if: -> { shopee_url_changed? }, on: :update
+
   before_validation :create_user_name
 
   has_many :products

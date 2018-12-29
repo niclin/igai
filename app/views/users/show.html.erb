@@ -3,7 +3,6 @@
     <div class="mt-4 mb-4 card">
       <div class="card-body">
         <h5 class="card-title"><%= image_tag(@user.avatar.thumb.url, class: "rounded") if @user.avatar.present? %><%= @user.name %></h5>
-        <p>Phone: <%= @user.phone %></p>
         <p>Facebook: <%= @user.facebook_url %></p>
         <p>Line: <%= @user.line_url %></p>
         <p>Shopee: <%= @user.shopee_url %></p>

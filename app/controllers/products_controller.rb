@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
                   description: @product.description,
                   og: {
                     title: combine_type_and_title(@product),
-                    image: @product.attachments.map { |attachment| attachment.image.medium.url }
+                    image: og_image(@product)
                   }
   end
 
@@ -42,5 +42,10 @@ class ProductsController < ApplicationController
   def require_online!
     return if @product.owner?(current_user)
     redirect_back(fallback_location: products_path, alert: "該商品已下架") if !@product.online?
+  end
+
+  def og_image(product)
+    return @product.attachments.new.image.url if @product.product_type == "buy"
+    @product.attachments.map { |attachment| attachment.image.medium.url }
   end
 end

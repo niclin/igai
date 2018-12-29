@@ -4,7 +4,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= image_tag(@user.avatar.thumb.url, class: "rounded") if @user.avatar.present? %><%= @user.name %></h5>
         <p>Facebook: <%= @user.facebook_url %></p>
-        <p>Line: <%= @user.line_url %></p>
+        <%= render_user_line_button(@user) %>
         <p>Shopee: <%= @user.shopee_url %></p>
 
         <%= link_to "編輯個人資料", edit_account_user_path if @user == current_user %>

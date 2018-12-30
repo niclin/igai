@@ -73,7 +73,7 @@ class User < ApplicationRecord
       if user.nil?
         name = auth.info.name.gsub(/\s+/, '_')
 
-        if User.find_by(name: name).exists?
+        if User.where(name: name).exists?
           name = nil
         end
 

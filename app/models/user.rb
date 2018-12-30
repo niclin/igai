@@ -73,11 +73,11 @@ class User < ApplicationRecord
       if user.nil?
         name = auth.info.name.gsub(/\s+/, '_')
 
-        if User.where(name: name).exists?
+        if User::USERNAME_PATTERN.match(name) && !User.where("lower(name) = ?", name.downcase).exists?
           name = nil
         end
 
-        user = User.new(name: name,
+        user = User.new(name: nil,
                         email: auth.info.email,
                         remote_avatar_url: auth.info.image,
                         password: Devise.friendly_token[0,20])
@@ -115,6 +115,6 @@ class User < ApplicationRecord
   end
 
   def valid_user_name?(user_name)
-    USERNAME_PATTERN.match(user_name) && User.where("lower(name) = ?", user_name.downcase).blank?
+    USERNAME_PATTERN.match(user_name) && !User.where("lower(name) = ?", user_name.downcase).exists?
   end
 end

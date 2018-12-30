@@ -13,6 +13,8 @@ class ChatRoomsController < ApplicationController
   end
 
   def messages
+    Rails.cache.delete("#{current_user.id}-unread-messages-count")
+
     @messages = @chat_room.messages.includes(:user).asc
     @product = @chat_room.product
 

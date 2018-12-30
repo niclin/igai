@@ -71,10 +71,17 @@ class User < ApplicationRecord
       user = User.where(email: email).first if email
 
       if user.nil?
-        user = User.new(name: auth.info.name.gsub(/\s+/, '_'),
+        name = auth.info.name.gsub(/\s+/, '_')
+
+        if User.find_by(name: name).exists?
+          name = nil
+        end
+
+        user = User.new(name: name,
                         email: auth.info.email,
                         remote_avatar_url: auth.info.image,
                         password: Devise.friendly_token[0,20])
+
         user.skip_confirmation!
         user.save!
       end

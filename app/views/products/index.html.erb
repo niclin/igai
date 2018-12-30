@@ -76,6 +76,10 @@
 
 <script>
   $("#js-clear-search-input").click(function() {
+    if ($("#q_title_cont").val() === "") {
+      return
+    }
+
     $("#q_title_cont").val("")
     window.location.href = '<%= products_url %>';
   })

@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   end
 
   def og_image(product)
-    return @product.attachments.new.image.url if @product.product_type == "buy"
+    return "https://igai.info/media/photos/products/default.jpg" if @product.product_type == "buy"
     @product.attachments.map { |attachment| attachment.image.medium.url }
   end
 end

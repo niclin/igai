@@ -28,7 +28,13 @@
           <tr>
             <td><%= render_product_type_badge(product) %></td>
 
-            <td><%= image_tag(product.attachments.first.image.thumb.url, class: "mini-img") if product.attachments.present? %></td>
+            <td>
+              <% if product.attachments.present? %>
+                <%= image_tag(product.attachments.first.image.thumb.url, class: "mini-img") %>
+              <% else %>
+                <%= image_tag("https://igai.info/media/photos/products/default.jpg", class: "mini-img")%>
+              <% end %>
+            </td>
             <td>
               <%= product.aasm.human_state %>
             </td>

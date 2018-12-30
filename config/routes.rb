@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
 
   get '/about', to: "pages#about"
+  get '/privacy', to: "pages#privacy"
 
   root "home#index"
 end

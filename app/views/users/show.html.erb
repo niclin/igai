@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <div class="mt-4 mb-4 card">
       <div class="card-body">
-        <h5 class="card-title"><%= image_tag(@user.avatar.thumb.url, class: "rounded") if @user.avatar.present? %><%= @user.name %></h5>
+        <h5 class="card-title"><%= @user.name %></h5>
+        <%= render_user_avatar(@user) %>
         <p>Facebook: <%= @user.facebook_url %></p>
         <%= render_user_line_button(@user) %>
         <p>Shopee: <%= @user.shopee_url %></p>

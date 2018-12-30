@@ -6,4 +6,10 @@ module UsersHelper
       end
     end
   end
+
+  def render_user_avatar(user)
+    if user.avatar.present?
+      image_tag(user.avatar.medium.url, class: "rounded-circle")
+    end
+  end
 end

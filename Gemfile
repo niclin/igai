@@ -95,6 +95,8 @@ gem "devise-async"
 
 gem "babosa"
 
+gem 'bootstrap-social-rails'
+
 group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'

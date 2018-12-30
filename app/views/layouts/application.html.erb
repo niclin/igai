@@ -14,14 +14,19 @@
   </head>
 
   <body>
+
     <%= render "common/navbar" %>
 
-    <div class="container">
+    <div class="main container">
       <%= render "common/flashes" %>
       <%= yield %>
     </div>
 
     <%= render "common/footer" %>
+
+    <div class="fb-customerchat"
+      page_id="2169016853348355">
+    </div>
   </body>
 
   <%= render "common/fb_sdk" %>

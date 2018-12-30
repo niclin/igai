@@ -19,6 +19,13 @@ zh-TW:
           online: 在線
           offline: 下線
           sold: 售出
+
+      user:
+        name: 用戶名
+        avatar: 頭像
+        facebook_url: Facebook 個人頁
+        line_url: Line
+        shopee_url: 蝦皮商場
     errors:
       messages:
         record_invalid: "校驗失敗: %{errors}"

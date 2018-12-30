@@ -97,6 +97,8 @@ gem "babosa"
 
 gem 'bootstrap-social-rails'
 
+gem 'ransack'
+
 group :development, :test do
   gem "pry-rails"
   gem 'rspec-rails'

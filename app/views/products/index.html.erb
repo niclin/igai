@@ -1,50 +1,82 @@
-<div class="row">
-<% @products.each do |product| %>
-  <div class="mt-4 col-md-4 col-lg-4">
-    <div class="card <%= product.vip? ? "vip-border" : "" %>">
-      <div class="card-header">
-        <%= render_product_type_badge(product) %>
-        <h5 class="d-inline-block"><%= link_to render_product_title(product), product_path(product) %></h5>
+<%= search_form_for @q do |f| %>
+  <div class="mt-4 row no-gutters">
+      <div class="col">
+        <%= f.search_field :title_cont, class: "form-control border-secondary border-right-0 rounded-0", placeholder: "輸入關鍵字..." %>
       </div>
-
-      <% if product.attachments.present? %>
-        <%= link_to product_path(product) do %>
-          <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
-        <% end %>
-      <% else %>
-        <%= link_to product_path(product) do %>
-          <%= image_tag(product.attachments.new.image.url, class: "card-img-top") %>
-        <% end %>
-      <% end %>
-      <div class="card-body">
-        <p class="card-text">
-          <%= render_product_description(product) %>
-        </p>
-
-
-        <div class="moto-category-container">
-          <i class="fa fa-motorcycle"></i>
-          <% product.categories.each do |category| %>
-            <div class="moto-category">
-              <%= category.name %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="text-secondary float-right">
-          <i class="fa fa-eye"></i> <%= product.impressions_count %>
-        </div>
-
-        <span>
-          <%= render_product_price(product) %>
-        </span>
+      <div class="col-auto">
+          <button id="js-clear-search-input" class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">
+              <i class="fa fa-close"></i>
+          </button>
       </div>
-    </div>
+      <div class="col-auto">
+        <%= f.submit class: "btn btn-outline-secondary border-left-0 rounded-0 rounded-right" do %>
+          <i class="fa fa-search"></i>
+        <% end %>
+      </div>
   </div>
 <% end %>
+
+<div class="row">
+  <% if @products.blank? %>
+    <div class="mt-4 col-md-12 text-center">
+      <p class="">暫時沒有找到關於 <span class="text-info"><%= params[:q][:title_cont] %></span> 的商品</p>
+      <%= link_to "返回商品列表", products_path, class: "btn btn-link" %>
+    </div>
+  <% end %>
+
+  <% @products.each do |product| %>
+    <div class="mt-4 col-md-4 col-lg-4">
+      <div class="card <%= product.vip? ? "vip-border" : "" %>">
+        <div class="card-header">
+          <%= render_product_type_badge(product) %>
+          <h5 class="d-inline-block"><%= link_to render_product_title(product), product_path(product) %></h5>
+        </div>
+
+        <% if product.attachments.present? %>
+          <%= link_to product_path(product) do %>
+            <%= image_tag(product.attachments.first.image.medium.url, class: "card-img-top") %>
+          <% end %>
+        <% else %>
+          <%= link_to product_path(product) do %>
+            <%= image_tag(product.attachments.new.image.url, class: "card-img-top") %>
+          <% end %>
+        <% end %>
+        <div class="card-body">
+          <p class="card-text">
+            <%= render_product_description(product) %>
+          </p>
+
+
+          <div class="moto-category-container">
+            <i class="fa fa-motorcycle"></i>
+            <% product.categories.each do |category| %>
+              <div class="moto-category">
+                <%= category.name %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="text-secondary float-right">
+            <i class="fa fa-eye"></i> <%= product.impressions_count %>
+          </div>
+
+          <span>
+            <%= render_product_price(product) %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
 </div>
 
 <div class="row justify-content-center mt-4">
   <%= will_paginate @products %>
 </div>
+
+<script>
+  $("#js-clear-search-input").click(function() {
+    $("#q_title_cont").val("")
+    window.location.href = '<%= products_url %>';
+  })
+</script>

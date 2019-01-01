@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    impressionist(@product)
     set_meta_tags title: combine_type_and_title(@product),
                   description: @product.description,
                   og: {
